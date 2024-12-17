@@ -1,0 +1,410 @@
+<!doctype html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<meta name="language" content="en" />
+<meta name="viewport" content="width=device-width" />
+<title>
+    Dynamic Trait to a Concrete Type in Rust | Aryan&#39;s Journal
+</title>
+  <meta name="description" content="As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.
+Every value in Rust is of a certain data type. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well." />
+<meta property="og:url" content="http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/">
+  <meta property="og:site_name" content="Aryan&#39;s Journal">
+  <meta property="og:title" content="Dynamic Trait to a Concrete Type in Rust">
+  <meta property="og:description" content="As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.
+Every value in Rust is of a certain data type. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-16T19:48:45+01:00">
+    <meta property="article:modified_time" content="2024-12-16T19:48:45+01:00">
+
+
+  <meta itemprop="name" content="Dynamic Trait to a Concrete Type in Rust">
+  <meta itemprop="description" content="As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.
+Every value in Rust is of a certain data type. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.">
+  <meta itemprop="datePublished" content="2024-12-16T19:48:45+01:00">
+  <meta itemprop="dateModified" content="2024-12-16T19:48:45+01:00">
+  <meta itemprop="wordCount" content="685">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dynamic Trait to a Concrete Type in Rust">
+  <meta name="twitter:description" content="As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.
+Every value in Rust is of a certain data type. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.">
+
+<link rel="canonical" href="http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/" />
+
+    <link rel="stylesheet" href="/css/index.css" />
+
+
+    <link rel="stylesheet" href="/css/override.css" />
+
+      <script src="/js/main.js" defer></script>
+  
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@id": "http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/",
+  "@type": "BlogPosting",
+  "author": {
+    "@type": "Person",
+    "email": "thearyanahmed@gmail.com",
+    "name": "Aryan"
+  },
+  "copyrightNotice": "thearyanahmed",
+  "datePublished": "2024-12-16",
+  "description": "As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.\nEvery value in Rust is of a certain data type. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.",
+  "headline": "Dynamic Trait to a Concrete Type in Rust",
+  "isPartOf": {
+    "@id": "http://localhost:1313/posts/",
+    "@type": "Blog",
+    "name": "Posts"
+  },
+  "mainEntityOfPage": "http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/",
+  "name": "Dynamic Trait to a Concrete Type in Rust",
+  "timeRequired": "PT4M",
+  "url": "http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/",
+  "wordCount": 685
+}
+</script>
+
+
+  </head>
+  <body>
+    <div class="container mx-auto flex max-w-prose flex-col space-y-10 p-4 md:p-6">
+      <header class="flex flex-row items-center justify-between">
+        <div>
+  <a id="skip-nav" class="sr-only" href="#maincontent">Skip to main content</a>
+  <a class="font-semibold" href="/">Aryan&#39;s Journal</a>
+</div>
+
+  <nav>
+    <ul class="flex flex-row items-center justify-end space-x-4">
+    <li>
+      <a aria-current="true" class="ancestor" href="/posts/">Posts</a
+      >
+    </li>
+    <li>
+      <a href="/graph/">Graph</a
+      >
+    </li>
+    </ul>
+  </nav>
+
+
+      </header>
+      <main class="prose prose-slate relative md:prose-lg prose-h1:text-[2em]" id="maincontent">
+        <article class="main">
+    <header>
+      <h1 class="!mb-1">Dynamic Trait to a Concrete Type in Rust</h1><div class="flex flex-row items-center space-x-4">
+          <time class="text-sm italic opacity-80" datetime="2024-12-16T19:48:45&#43;01:00"
+            >December 16, 2024</time
+          >
+        </div>
+    </header>
+
+    <p>As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.</p>
+<p>Every value in Rust is of a certain <em>data type</em>. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.</p>
+<p>What happens we need something dynamic of different types?</p>
+<h3 id="context" class="scroll-mt-8 group">
+  Context
+  
+    <a href="#context"
+        class="no-underline hidden opacity-50 hover:opacity-100 !text-inherit group-hover:inline-block"
+        aria-hidden="true" title="Link to this heading" tabindex="-1">
+        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  fill="none"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  class="lucide lucide-link w-4 h-4 block"
+  viewBox="0 0 24 24"
+>
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg>
+
+    </a>
+  
+</h3>
+<p>I’m trying to build a storage library, that supports multiple drivers. Sort of like <a href="https://laravel.com/docs/9.x/filesystem">laravel’s storage</a> class. In my design, we’d have something like</p>
+<pre><code>Storage::put('file-01.txt', content);
+
+Storage::disk('s3')-&gt;put('file-02.png', content);
+
+Storage::download('file-03.docs');
+</code></pre>
+<p>As it’ll have different types of disks, which will work as adapters to our storage.</p>
+<h3 id="the-problem" class="scroll-mt-8 group">
+  The problem
+  
+    <a href="#the-problem"
+        class="no-underline hidden opacity-50 hover:opacity-100 !text-inherit group-hover:inline-block"
+        aria-hidden="true" title="Link to this heading" tabindex="-1">
+        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  fill="none"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  class="lucide lucide-link w-4 h-4 block"
+  viewBox="0 0 24 24"
+>
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg>
+
+    </a>
+  
+</h3>
+<p>The problem I was facing was having different config files for each type of disks. Our LocalFileAdapter , S3BucketFileAdapater , FTPFileAdapter each will have different type of config files. Simply put, S3BucketFileAdapater will have public key ,secret key and bucket name. LocalFileAdapater will not need these.</p>
+<h4 id="sketching" class="scroll-mt-8 group">
+  Sketching
+  
+    <a href="#sketching"
+        class="no-underline hidden opacity-50 hover:opacity-100 !text-inherit group-hover:inline-block"
+        aria-hidden="true" title="Link to this heading" tabindex="-1">
+        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  fill="none"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  class="lucide lucide-link w-4 h-4 block"
+  viewBox="0 0 24 24"
+>
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg>
+
+    </a>
+  
+</h4>
+<p>Now, I want to have a method something similar to Storage::new(config) or something like this. The config should have which adapter/s to use, with their appropriate configuration (and unique) values.</p>
+<h4 id="two-cfgs" class="scroll-mt-8 group">
+  Two cfgs
+  
+    <a href="#two-cfgs"
+        class="no-underline hidden opacity-50 hover:opacity-100 !text-inherit group-hover:inline-block"
+        aria-hidden="true" title="Link to this heading" tabindex="-1">
+        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  fill="none"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  class="lucide lucide-link w-4 h-4 block"
+  viewBox="0 0 24 24"
+>
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg>
+
+    </a>
+  
+</h4>
+<p>For better understanding, I’m paining two config structs.</p>
+<pre><code>pub struct LocalFileSystemAdapterConfig {
+  pub root_dir: String,
+}
+
+pub struct S3AdapterConfig {
+  pub public_key: String,
+  pub secret_key: String,
+  pub bucket: String,
+  pub use_path_style_endpoint: false,
+}
+</code></pre>
+<p>And I need something like</p>
+<pre><code>trait StorageAdapter {
+  // ... methods
+}
+struct Storage {
+  disk: StorageAdapter,
+  // other props
+}
+
+let storage = Storage::from(LocalFileSystemAdapterConfig | S3AdapterConfig); 
+
+// and based on the given config
+storage.disk = LocalFileSystem | S3
+</code></pre>
+<p>Defining a function that takes a dynamic parameter and casts it down to a specific / concrete type. The initial thought was maybe we should have something like</p>
+<pre><code>struct LocalAdapterConfig {
+  base_dir: String,
+}
+
+impl LocalAdapter {
+  pub fn new&lt;T : dyn StorageAdapterConfigTrait&gt;(config: T) -&gt; LocalAdapter {
+    let local_config = config as LocalAdapterConfig;
+    // THIS IS NOT ALLOWED
+  }
+}
+</code></pre>
+<p>The attempt resulted in a failure and gave me:</p>
+<pre><code>... an `as` expression can only be used to convert between primitive types
+</code></pre>
+<p>Rust is saying, you can use the as keyword to convert between primitive types. This was not working. But as we are using a dynamictrait (as an interface concept). We can cast that trait to a concrete type.</p>
+<h3 id="solution-downcast" class="scroll-mt-8 group">
+  Solution: Downcast
+  
+    <a href="#solution-downcast"
+        class="no-underline hidden opacity-50 hover:opacity-100 !text-inherit group-hover:inline-block"
+        aria-hidden="true" title="Link to this heading" tabindex="-1">
+        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  fill="none"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  class="lucide lucide-link w-4 h-4 block"
+  viewBox="0 0 24 24"
+>
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg>
+
+    </a>
+  
+</h3>
+<p>In this case, our config: T would be converted to LocalAdapterConfig. Though the method signature needs to change a bit.</p>
+<p>We want to use the Any trait, it uses reflection to allow dynamic typing of any &lsquo;static type.</p>
+<blockquote>
+<p>Downcasting is converting a trait into a concrete type.</p>
+</blockquote>
+<p>Our initial code is as follows</p>
+<pre><code>use std::any::Any;
+
+pub struct LocalFileSystemAdapterConfig {
+    pub base_directory: String,
+}
+
+pub struct LocalFileSystemAdapter {
+  pub base_dir: String, // just for demo purpose
+}
+
+// the trait config that every storage adapter's config will implement
+pub trait StorageAdapterConfig {
+    fn as_any(&amp;self) -&gt; &amp;dyn Any;
+}
+</code></pre>
+<p>We need the as_any method to be implemented for concrete struct/s where we want to allow <em>downcasting</em>. Therefore,</p>
+<pre><code>use std::any::Any;
+
+impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
+    fn as_any(&amp;self) -&gt; &amp;dyn Any {
+        self
+    }
+}
+</code></pre>
+<p>We also need to change our method’s signature from</p>
+<pre><code>pub fn new&lt;T : dyn StorageAdapterConfigTrait&gt;(config: T) 
+</code></pre>
+<p>to</p>
+<pre><code>pub fn new(config: &amp;dyn Any)
+
+// make sure to import std::any::Any;
+</code></pre>
+<p>And finally, to downcast a variable of type dyn Any to our concrete LocalFileSystemAdapterConfig ,</p>
+<pre><code>let cfg : &amp;LocalFileSystemAdapterConfig = config
+            .downcast_ref::&lt;LocalFileSystemAdapterConfig&gt;()
+            .expect(&quot;failed to downcast&quot;);
+
+// the syntax is 
+// .downcast_ref::&lt;$CONCRETE_TYPE&gt;().expect(&quot;msg&quot;);
+</code></pre>
+<p>The full code,</p>
+<pre><code>impl LocalFileSystemAdapter {
+
+    pub fn new(config: &amp;dyn Any) -&gt; LocalFileSystemAdapter {
+
+        let cfg : &amp;LocalFileSystemAdapterConfig = config
+            .downcast_ref::&lt;LocalFileSystemAdapterConfig&gt;()
+            .expect(&quot;failed to downcast&quot;);
+
+        let base_dir = &amp;cfg.base_directory;
+
+        LocalFileSystemAdapter {
+            base_dir: base_dir.to_string(),
+        }
+    }
+  
+  // ...
+}
+</code></pre>
+<p>Our IDE picks up the change and returns proper intellisense.</p>
+<p><img src="https://cdn-images-1.medium.com/max/3676/1*Wc_P7YRnKepKZIwN-e-zlA.png" alt="Downcasting a dyn trait to a concrete type"></p>
+<p>***Note *<em>maybe there are better ways of achieving the same result, maybe the API Design could have been better to avoid it in the first place. Well, I’m still learning rust.</em></p>
+<p>Found a mistake? Feel free to point it out.</p>
+
+  </article>
+    <aside class="not-prose flex flex-col space-y-8 border-t pt-6">
+    <section class="flex flex-col space-y-4" aria-hidden="true">
+      <h2 class="flex flex-row items-center space-x-2 text-lg font-semibold">
+        <svg
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="2"
+  class="lucide lucide-chart-network h-4 w-4"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+  <path
+    d="m13.11 7.664 1.78 2.672M14.162 12.788l-3.324 1.424M20 4l-6.06 1.515M3 3v16a2 2 0 0 0 2 2h16"
+  />
+  <circle cx="12" cy="6" r="2" />
+  <circle cx="16" cy="12" r="2" />
+  <circle cx="9" cy="15" r="2" />
+</svg>
+
+        <span>Graph</span>
+      </h2>
+
+      <content-network-graph
+  class="h-64 ml-6"
+  data-endpoint="/graph/index.json"
+  page="/posts/dynamic-trait-to-a-concrete-type-in-rust/"
+></content-network-graph>
+
+    </section>
+</aside>
+
+
+      </main>
+      <footer class="mt-20 border-t border-neutral-100 pt-2 text-xs">
+        <section class="items-top flex flex-row justify-between opacity-70">
+  <div class="flex flex-col space-y-2">
+      <p>Copyright &copy; 2024, thearyanahmed.</p>
+
+  </div>
+</section>
+
+      </footer>
+    </div>
+    
+  </body>
+</html>

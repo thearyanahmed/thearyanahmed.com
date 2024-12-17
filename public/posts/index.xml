@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Aryan&#39;s Journal</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Aryan&#39;s Journal</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <managingEditor>thearyanahmed@gmail.com (Aryan)</managingEditor>
+    <webMaster>thearyanahmed@gmail.com (Aryan)</webMaster>
+    <copyright>thearyanahmed</copyright>
+    <lastBuildDate>Mon, 16 Dec 2024 19:53:11 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Subnet Masks</title>
+      <link>http://localhost:1313/posts/subnet-masks/</link>
+      <pubDate>Mon, 16 Dec 2024 19:53:11 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/posts/subnet-masks/</guid>
+      <description>&lt;p&gt;It’s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.&lt;/p&gt;&#xA;&lt;h3 id=&#34;subnet-mask&#34; class=&#34;scroll-mt-8 group&#34;&gt;&#xA;  subnet mask&#xA;  &#xA;    &lt;a href=&#34;#subnet-mask&#34;&#xA;        class=&#34;no-underline hidden opacity-50 hover:opacity-100 !text-inherit group-hover:inline-block&#34;&#xA;        aria-hidden=&#34;true&#34; title=&#34;Link to this heading&#34; tabindex=&#34;-1&#34;&gt;&#xA;        &lt;svg&#xA;  xmlns=&#34;http://www.w3.org/2000/svg&#34;&#xA;  width=&#34;16&#34;&#xA;  height=&#34;16&#34;&#xA;  fill=&#34;none&#34;&#xA;  stroke=&#34;currentColor&#34;&#xA;  stroke-linecap=&#34;round&#34;&#xA;  stroke-linejoin=&#34;round&#34;&#xA;  stroke-width=&#34;2&#34;&#xA;  class=&#34;lucide lucide-link w-4 h-4 block&#34;&#xA;  viewBox=&#34;0 0 24 24&#34;&#xA;&gt;&#xA;  &lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34; /&gt;&#xA;  &lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34; /&gt;&#xA;&lt;/svg&gt;&#xA;&#xA;    &lt;/a&gt;&#xA;  &#xA;&lt;/h3&gt;&#xA;&lt;p&gt;is a fundamental concept in computer networking that is used to divide an IP address into two parts: the network address and the host address. It&amp;rsquo;s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Saying Goodbye to Evernote Finally</title>
+      <link>http://localhost:1313/posts/saying-goodbye-to-evernote-finally/</link>
+      <pubDate>Mon, 16 Dec 2024 19:52:46 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/posts/saying-goodbye-to-evernote-finally/</guid>
+      <description>&lt;p&gt;I’m an average note taker. But, I do take notes on a regular basis. I prefer writing things down, helps me tackle them. Whether it is a task, or just planning about next week or anything.&lt;/p&gt;&#xA;&lt;p&gt;As working in tech, obviously I tried out some digital note taking apps and I think I’ve tried out most of the major ones (till now, as of writing, 2. Mar 2024). I started my digital note taking with &lt;a href=&#34;https://www.evernote.com/&#34;&gt;Evernote&lt;/a&gt;.  I then switched to something else but mainly for trying and finally settled for evernote in 2017.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Prepared Statements in Sql</title>
+      <link>http://localhost:1313/posts/prepared-statements-in-sql/</link>
+      <pubDate>Mon, 16 Dec 2024 19:52:18 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/posts/prepared-statements-in-sql/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/2000/1*tmEFJ0LreB8wabdi67XY-Q.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Prepared statement&lt;/strong&gt;s are a common thing sql world. It has many benefits like it can execute the same (or similar) SQL statements repeatedly with high efficiency. It can also prevent one of the biggest security vulnerabilities, &lt;strong&gt;SQL injection&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Compared to executing the query directly, there are primarily 3 advantages. Taking these points from w3schools,&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Prepared statements reduce parsing time as the preparation on the query is done only once (although the statement is executed multiple times).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Dynamic Trait to a Concrete Type in Rust</title>
+      <link>http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/</link>
+      <pubDate>Mon, 16 Dec 2024 19:48:45 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/</guid>
+      <description>&lt;p&gt;As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.&lt;/p&gt;&#xA;&lt;p&gt;Every value in Rust is of a certain &lt;em&gt;data type&lt;/em&gt;. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Differences Between Ssl and Tls</title>
+      <link>http://localhost:1313/posts/differences-between-ssl-and-tls/</link>
+      <pubDate>Mon, 16 Dec 2024 19:48:19 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/posts/differences-between-ssl-and-tls/</guid>
+      <description>&lt;p&gt;While they serve a similar purpose, they are not quite the same. In this article, we’ll delve into the differences between SSL (Secure Sockets Layer) and TLS (Transport Layer Security) protocols.&lt;/p&gt;&#xA;&lt;p&gt;In the world of online security, SSL and TLS are two terms that often come up when discussing encrypted communication. They both play a crucial role in ensuring that our sensitive data remains safe while traversing the vast expanses of the internet. While they serve a similar purpose, they are not quite the same. In this article, we&amp;rsquo;ll delve into the differences between SSL (Secure Sockets Layer) and TLS (Transport Layer Security) protocols.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Concurrency in Golang Part 1</title>
+      <link>http://localhost:1313/posts/concurrency-in-golang-part-1/</link>
+      <pubDate>Mon, 16 Dec 2024 19:47:48 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/posts/concurrency-in-golang-part-1/</guid>
+      <description>&lt;p&gt;This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.&lt;/p&gt;&#xA;&lt;h3 id=&#34;what-is-concurrency&#34; class=&#34;scroll-mt-8 group&#34;&gt;&#xA;  What is Concurrency?&#xA;  &#xA;    &lt;a href=&#34;#what-is-concurrency&#34;&#xA;        class=&#34;no-underline hidden opacity-50 hover:opacity-100 !text-inherit group-hover:inline-block&#34;&#xA;        aria-hidden=&#34;true&#34; title=&#34;Link to this heading&#34; tabindex=&#34;-1&#34;&gt;&#xA;        &lt;svg&#xA;  xmlns=&#34;http://www.w3.org/2000/svg&#34;&#xA;  width=&#34;16&#34;&#xA;  height=&#34;16&#34;&#xA;  fill=&#34;none&#34;&#xA;  stroke=&#34;currentColor&#34;&#xA;  stroke-linecap=&#34;round&#34;&#xA;  stroke-linejoin=&#34;round&#34;&#xA;  stroke-width=&#34;2&#34;&#xA;  class=&#34;lucide lucide-link w-4 h-4 block&#34;&#xA;  viewBox=&#34;0 0 24 24&#34;&#xA;&gt;&#xA;  &lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34; /&gt;&#xA;  &lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34; /&gt;&#xA;&lt;/svg&gt;&#xA;&#xA;    &lt;/a&gt;&#xA;  &#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Concurrency refers to the simultaneous and autonomous execution of multiple processes. This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Choosing the Right String Type in Rust a Journey of a Novice</title>
+      <link>http://localhost:1313/posts/choosing-the-right-string-type-in-rust-a-journey-of-a-novice/</link>
+      <pubDate>Mon, 16 Dec 2024 19:47:06 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/posts/choosing-the-right-string-type-in-rust-a-journey-of-a-novice/</guid>
+      <description>&lt;p&gt;Rust has been a favorite. While doing so, I’ve come across various scenarios where choosing the right string type can significantly impact both performance and code maintainability. In this blog post, I’ll share some insights into when to use different string types in Rust, based on real-world use cases.&lt;/p&gt;&#xA;&lt;h3 id=&#34;string&#34; class=&#34;scroll-mt-8 group&#34;&gt;&#xA;  String&#xA;  &#xA;    &lt;a href=&#34;#string&#34;&#xA;        class=&#34;no-underline hidden opacity-50 hover:opacity-100 !text-inherit group-hover:inline-block&#34;&#xA;        aria-hidden=&#34;true&#34; title=&#34;Link to this heading&#34; tabindex=&#34;-1&#34;&gt;&#xA;        &lt;svg&#xA;  xmlns=&#34;http://www.w3.org/2000/svg&#34;&#xA;  width=&#34;16&#34;&#xA;  height=&#34;16&#34;&#xA;  fill=&#34;none&#34;&#xA;  stroke=&#34;currentColor&#34;&#xA;  stroke-linecap=&#34;round&#34;&#xA;  stroke-linejoin=&#34;round&#34;&#xA;  stroke-width=&#34;2&#34;&#xA;  class=&#34;lucide lucide-link w-4 h-4 block&#34;&#xA;  viewBox=&#34;0 0 24 24&#34;&#xA;&gt;&#xA;  &lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34; /&gt;&#xA;  &lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34; /&gt;&#xA;&lt;/svg&gt;&#xA;&#xA;    &lt;/a&gt;&#xA;  &#xA;&lt;/h3&gt;&#xA;&lt;p&gt;The &lt;code&gt;String&lt;/code&gt; type in Rust is a growable, heap-allocated, UTF-8 encoded string. It&amp;rsquo;s your go-to choice for most cases. Use &lt;code&gt;String&lt;/code&gt; when:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Building a Url Shortener With Rust and Redis</title>
+      <link>http://localhost:1313/posts/building-a-url-shortener-with-rust-and-redis/</link>
+      <pubDate>Mon, 16 Dec 2024 19:46:16 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/posts/building-a-url-shortener-with-rust-and-redis/</guid>
+      <description>&lt;p&gt;Our approach will be to make a plan for the features and work our way through.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;All the code could be found at &lt;a href=&#34;https://github.com/thearyanahmed/lucy&#34;&gt;https://github.com/thearyanahmed/lucy&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;So, getting started, our url shortener is a program, that stores a longer form of url (text) against an unique and short text. You can think of a hashmap. Where the values are URLs and keys are unique ids.&lt;/p&gt;&#xA;&lt;p&gt;We’ll need to identify the url based on the unique id. If it exists, we return it, if not, return a different result.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Rust Memory Ownership and Borrowing</title>
+      <link>http://localhost:1313/posts/rust-memory-ownership-and-borrowing/</link>
+      <pubDate>Mon, 16 Dec 2024 19:43:22 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/posts/rust-memory-ownership-and-borrowing/</guid>
+      <description>&lt;p&gt;Rust has a pretty good approach to handling this. There is a bit of learning curve. But if you skip it for any reason, or don’t understand it quite well, then it’ll be difficult for you to write good rust code.&lt;/p&gt;&#xA;&lt;p&gt;It’s the ownership model. That keeps us safe and lets us sleep at night after we deploy we rust code to production. This is also how rust avoids a garbage collector.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

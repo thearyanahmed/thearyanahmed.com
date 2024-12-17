@@ -1,0 +1,87 @@
+{
+  "graph": {
+    "/posts/building-a-url-shortener-with-rust-and-redis/": {
+      "in": [],
+      "out": []
+    },
+    "/posts/choosing-the-right-string-type-in-rust-a-journey-of-a-novice/": {
+      "in": [],
+      "out": []
+    },
+    "/posts/concurrency-in-golang-part-1/": {
+      "in": [],
+      "out": []
+    },
+    "/posts/differences-between-ssl-and-tls/": {
+      "in": [],
+      "out": []
+    },
+    "/posts/dynamic-trait-to-a-concrete-type-in-rust/": {
+      "in": [],
+      "out": []
+    },
+    "/posts/prepared-statements-in-sql/": {
+      "in": [],
+      "out": []
+    },
+    "/posts/rust-memory-ownership-and-borrowing/": {
+      "in": [],
+      "out": []
+    },
+    "/posts/saying-goodbye-to-evernote-finally/": {
+      "in": [],
+      "out": []
+    },
+    "/posts/subnet-masks/": {
+      "in": [],
+      "out": []
+    }
+  },
+  "pages": {
+    "/posts/building-a-url-shortener-with-rust-and-redis/": {
+      "permalink": "/posts/building-a-url-shortener-with-rust-and-redis/",
+      "section": "posts",
+      "title": "Building a Url Shortener With Rust and Redis"
+    },
+    "/posts/choosing-the-right-string-type-in-rust-a-journey-of-a-novice/": {
+      "permalink": "/posts/choosing-the-right-string-type-in-rust-a-journey-of-a-novice/",
+      "section": "posts",
+      "title": "Choosing the Right String Type in Rust a Journey of a Novice"
+    },
+    "/posts/concurrency-in-golang-part-1/": {
+      "permalink": "/posts/concurrency-in-golang-part-1/",
+      "section": "posts",
+      "title": "Concurrency in Golang Part 1"
+    },
+    "/posts/differences-between-ssl-and-tls/": {
+      "permalink": "/posts/differences-between-ssl-and-tls/",
+      "section": "posts",
+      "title": "Differences Between Ssl and Tls"
+    },
+    "/posts/dynamic-trait-to-a-concrete-type-in-rust/": {
+      "permalink": "/posts/dynamic-trait-to-a-concrete-type-in-rust/",
+      "section": "posts",
+      "title": "Dynamic Trait to a Concrete Type in Rust"
+    },
+    "/posts/prepared-statements-in-sql/": {
+      "permalink": "/posts/prepared-statements-in-sql/",
+      "section": "posts",
+      "title": "Prepared Statements in Sql"
+    },
+    "/posts/rust-memory-ownership-and-borrowing/": {
+      "permalink": "/posts/rust-memory-ownership-and-borrowing/",
+      "section": "posts",
+      "title": "Rust Memory Ownership and Borrowing"
+    },
+    "/posts/saying-goodbye-to-evernote-finally/": {
+      "permalink": "/posts/saying-goodbye-to-evernote-finally/",
+      "section": "posts",
+      "title": "Saying Goodbye to Evernote Finally"
+    },
+    "/posts/subnet-masks/": {
+      "permalink": "/posts/subnet-masks/",
+      "section": "posts",
+      "title": "Subnet Masks"
+    }
+  }
+}

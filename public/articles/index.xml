@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Articles on Aryan&#39;s Journal</title>
+    <link>http://localhost:1313/articles/</link>
+    <description>Recent content in Articles on Aryan&#39;s Journal</description>
+    <generator>Hugo</generator>
+    <language>en-uk</language>
+    <managingEditor>thearyanahmed@gmail.com (Aryan)</managingEditor>
+    <webMaster>thearyanahmed@gmail.com (Aryan)</webMaster>
+    <copyright>thearyanahmed</copyright>
+    <lastBuildDate>Mon, 16 Dec 2024 19:43:22 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust Memory Ownership and Borrowing</title>
+      <link>http://localhost:1313/articles/rust-memory-ownership-and-borrowing/</link>
+      <pubDate>Mon, 16 Dec 2024 19:43:22 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/articles/rust-memory-ownership-and-borrowing/</guid>
+      <description>&lt;p&gt;Rust has a pretty good approach to handling this. There is a bit of learning curve. But if you skip it for any reason, or don’t understand it quite well, then it’ll be difficult for you to write good rust code.&lt;/p&gt;&#xA;&lt;p&gt;It’s the ownership model. That keeps us safe and lets us sleep at night after we deploy we rust code to production. This is also how rust avoids a garbage collector.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
