@@ -1,3 +1,5 @@
+hugo build;
+
 cd dist || exit;
 git pull --force;
 cd ../;
