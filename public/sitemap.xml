@@ -29,19 +29,24 @@
     <loc>http://localhost:1313/posts/choosing-the-right-string-type-in-rust-a-journey-of-a-novice/</loc>
     <lastmod>2024-12-16T19:47:06+01:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/mock/interviews/</loc>
+    <lastmod>2024-12-16T19:46:16+01:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/posts/building-a-url-shortener-with-rust-and-redis/</loc>
+    <lastmod>2024-12-16T19:46:16+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/mock/</loc>
+    <lastmod>2024-12-16T19:46:16+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/mock/schedule/</loc>
     <lastmod>2024-12-16T19:46:16+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/rust-memory-ownership-and-borrowing/</loc>
     <lastmod>2024-12-16T19:43:22+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/mock/interviews/</loc>
-  </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
     <loc>http://localhost:1313/graph/</loc>
-  </url><url>
-    <loc>http://localhost:1313/mock/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
   </url>

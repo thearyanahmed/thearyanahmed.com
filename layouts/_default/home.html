@@ -1,8 +1,8 @@
 {{ define "main" }}
   <article class="main">
     {{- with .Title }}
-      <header>
-        <h1 class="!mb-1">{{ . }}</h1>
+      <header class="mb-20">
+        <p class="font-medium" style="font-size: 64px;">{{ . }}</p>
       </header>
     {{ end -}}
     {{- with .Content }}
