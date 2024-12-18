@@ -35,9 +35,13 @@
     <loc>http://localhost:1313/posts/rust-memory-ownership-and-borrowing/</loc>
     <lastmod>2024-12-16T19:43:22+01:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/mock/interviews/</loc>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
     <loc>http://localhost:1313/graph/</loc>
+  </url><url>
+    <loc>http://localhost:1313/mock/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
   </url>

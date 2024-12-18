@@ -13,9 +13,7 @@
   {{- if default true site.Params.home.showRecentPosts }}
     {{- $posts := where site.RegularPages "Section" "posts" -}}
     {{- with $posts.Limit (int (default 3 site.Params.home.recentPostsLimit)) }}
-      <section>
-        <h2>Recent posts</h2>
-
+      <section class="mt-10">
         {{ partial "posts/list.html" . }}
       </section>
     {{ end -}}

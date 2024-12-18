@@ -19,6 +19,10 @@ enableRobotsTXT = true # IMPORTANT: set to true if you want to use the theme's g
     pageRef = '/posts'
     weight = 30
   [[menus.main]]
+    name = 'Mock Interview'
+    pageRef = '/mock'
+    weight = 31
+  [[menus.main]]
     name = 'Graph'
     pageRef = '/graph'
     weight = 80

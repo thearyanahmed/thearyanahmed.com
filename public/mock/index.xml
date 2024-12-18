@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mocks on Aryan&#39;s Journal</title>
+    <link>http://localhost:1313/mock/</link>
+    <description>Recent content in Mocks on Aryan&#39;s Journal</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <managingEditor>thearyanahmed@gmail.com (Aryan)</managingEditor>
+    <webMaster>thearyanahmed@gmail.com (Aryan)</webMaster>
+    <copyright>thearyanahmed</copyright>
+    <lastBuildDate>Mon, 16 Dec 2024 19:46:16 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/mock/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Assalau Walaikum / hello</title>
+      <link>http://localhost:1313/mock/interviews/</link>
+      <pubDate>Mon, 16 Dec 2024 19:46:16 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/mock/interviews/</guid>
+      <description>&lt;p&gt;আমি Aryan, &lt;a href=&#34;https://www.digitalocean.com/&#34;&gt;DigitalOcean&lt;/a&gt; এর &lt;a href=&#34;https://www.digitalocean.com/products/app-platform&#34;&gt;App Platform&lt;/a&gt; এ software engineer হিসাবে আছি ।&#xA;Recently, অনেকেই তাদের interview নেয়ার জন্য বলেছেন । তাই, আমি কিছু mock interview নেয়ার কথা চিন্তা করছি ।&lt;/p&gt;&#xA;&lt;h3 id=&#34;bit-about-me&#34; class=&#34;scroll-mt-8 group&#34;&gt;&#xA;  Bit about me&#xA;  &#xA;    &lt;a href=&#34;#bit-about-me&#34;&#xA;        class=&#34;no-underline hidden opacity-50 hover:opacity-100 !text-inherit group-hover:inline-block&#34;&#xA;        aria-hidden=&#34;true&#34; title=&#34;Link to this heading&#34; tabindex=&#34;-1&#34;&gt;&#xA;        &lt;svg&#xA;  xmlns=&#34;http://www.w3.org/2000/svg&#34;&#xA;  width=&#34;16&#34;&#xA;  height=&#34;16&#34;&#xA;  fill=&#34;none&#34;&#xA;  stroke=&#34;currentColor&#34;&#xA;  stroke-linecap=&#34;round&#34;&#xA;  stroke-linejoin=&#34;round&#34;&#xA;  stroke-width=&#34;2&#34;&#xA;  class=&#34;lucide lucide-link w-4 h-4 block&#34;&#xA;  viewBox=&#34;0 0 24 24&#34;&#xA;&gt;&#xA;  &lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34; /&gt;&#xA;  &lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34; /&gt;&#xA;&lt;/svg&gt;&#xA;&#xA;    &lt;/a&gt;&#xA;  &#xA;&lt;/h3&gt;&#xA;&lt;p&gt;DigitalOcean এর আগে আমি Germany&amp;rsquo;র অন্য ২ টি company তে সহ অন্য company তে কাজ করার সুযোগ পেয়েছি । এছাড়া, আরো অনেক reknowned companies like &lt;a href=&#34;https://www.hellofresh.de/&#34;&gt;HelloFresh&lt;/a&gt;, &lt;a href=&#34;https://www.deliveryhero.com/&#34;&gt;DeliveryHero&lt;/a&gt;, &lt;a href=&#34;https://en.zalando.de/?_rfl=de&#34;&gt;Zalando&lt;/a&gt;, &lt;a href=&#34;https://nordsecurity.com/&#34;&gt;Nord Security&lt;/a&gt;, &lt;a href=&#34;https://www.tier.app/en/&#34;&gt;Tier Mobility&lt;/a&gt;, &lt;a href=&#34;https://www.remerge.io/&#34;&gt;Remerge&lt;/a&gt;, &lt;a href=&#34;https://www.getground.co.uk/&#34;&gt;Get Ground&lt;/a&gt; সহ অন্যান্য company তে&#xA;interview দেয়ার + অনেক গুলো থেকেই offer এসেছে alhamdulilah. আর যেগুলো থেকে আসে নি,সেসব interview থেকে অনেক কিছুই শিখতে পেরেছি । Specially company গুলো technically আর culturally কি কি বিষয় জানতে চায়, কি কি পছন্দ করে আর কি কি করে না ।&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Schedule a mock interview</title>
+      <link>http://localhost:1313/mock/schedule/</link>
+      <pubDate>Mon, 16 Dec 2024 19:46:16 +0100</pubDate><author>thearyanahmed@gmail.com (Aryan)</author>
+      <guid>http://localhost:1313/mock/schedule/</guid>
+      <description>&lt;p&gt;Content coming soon.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
