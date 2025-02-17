@@ -7,7 +7,7 @@
     
     <language>en</language>
     <copyright>Copyright 2025, Calvin Tran</copyright>
-    <lastBuildDate>Fri, 25 Oct 2024 19:48:19 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2024 19:53:11 +0100</lastBuildDate>
     <generator>Hugo - gohugo.io</generator>
     <docs>http://cyber.harvard.edu/rss/rss.html</docs>
     <atom:link href="http://localhost:1313//atom.xml" rel="self" type="application/atom+xml"/>
@@ -728,6 +728,53 @@ You can tell what a function do.&lt;/p&gt;
       <author>Aryan Ahmed</author>
       <guid>http://localhost:1313/posts/rust-memory-ownership-and-borrowing/</guid>
       <pubDate>Thu, 27 Jun 2024 19:43:22 +0100</pubDate>
+    </item>
+    
+    <item>
+      <title>Saying Goodbye to Evernote Finally</title>
+      <link>http://localhost:1313/posts/saying-goodbye-to-evernote-finally/</link>
+      <description>&lt;p&gt;I’m an average note taker. But, I do take notes on a regular basis. I prefer writing things down, helps me tackle them. Whether it is a task, or just planning about next week or anything.&lt;/p&gt;
+&lt;p&gt;As working in tech, obviously I tried out some digital note taking apps and I think I’ve tried out most of the major ones (till now, as of writing, 2. Mar 2024). I started my digital note taking with &lt;a href=&#34;https://www.evernote.com/&#34;&gt;Evernote&lt;/a&gt;.  I then switched to something else but mainly for trying and finally settled for evernote in 2017.&lt;/p&gt;
+&lt;p&gt;I liked their design, 3 column view. We could focus on the note itself when writing or perhaps reading. And supported many options for formatting. Like tables.&lt;/p&gt;
+&lt;p&gt;However, over the years, evernote has lacked innovation and it’s development was poor to say the least. I do not know what was going on inside the company. But as a customer, it was very very disappointing.&lt;/p&gt;
+&lt;p&gt;I obviously switched to different notes and tried them out and kept an eye on evernote. I’d often switch back, take 1 month’s subscription and see how things have improved. I risked more than a handful number of times to migrate all my notes to evernote and had to switch back after sometime.&lt;/p&gt;
+&lt;p&gt;In the productivity space, which I think evernote roams around, simplicity is your best friend. In other words, complex systems can make you less productive. A productive note taking app (or any app in this space) should be a companion, I want it like something at the back of my head but not too bothered with. Simple, fast and it works.&lt;/p&gt;
+&lt;p&gt;Over the years, evernote lost all three I guess. They were so busy with their ‘&lt;strong&gt;home&lt;/strong&gt;’ and ‘&lt;strong&gt;tasks&lt;/strong&gt;’, they didn’t bother to keep the basic things running. Or they failed to do so.&lt;/p&gt;
+&lt;p&gt;The only widget that was somewhat useful in evernote’s home page was the Tasks area, which would show you today’s tasks. Apart from that, showing notebooks, recently captured, pinned note, recent notes, none of them were that appealing or had made any impact.&lt;/p&gt;
+&lt;p&gt;Integration with calendars, tasks, organize your home. But evernote became very slow. I had so much trouble syncing with my mobile and desktop version of the app. And if you are editing the same note, its a nightmare.&lt;/p&gt;
+&lt;p&gt;And by editing, I just mean opeing that note on a different device, if the app thought it was in editing mode, maybe I had clicked somewhere which triggered collusions.&lt;/p&gt;
+&lt;p&gt;Recently they went through some major changes and I thought, okay, maybe one last time. I wanna try it out for a longer period of time and see if I can make it or not.&lt;/p&gt;
+&lt;p&gt;After (re)starting my days with evernote, they soon released a new UI and the classic black sidebar white 3 column were no more. I personally did not like the new glassy look. I at least hoped they’d allow us to choose. They did, but not between the glassy and old one. You can choose between light and dark mode and thats about it. At least I could not find the old one!&lt;/p&gt;
+&lt;p&gt;I really liked this UI.
+&lt;img
+  src=&#34;https://store-images.s-microsoft.com/image/apps.34390.9007199266246247.98c8221f-8cff-4552-a6dc-72ec835527f0.6668eaf8-4d03-48a2-94b0-79ae4d2739bb&#34;
+  alt=&#34;Evernote&#34;
+  loading=&#34;lazy&#34;
+  decoding=&#34;async&#34;
+  class=&#34;full-width&#34;
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;Besides that, the space between the tasks themselves, the limited fonts, adding AI to do cleanup… why? Design is subjective, one can say they liked the design, and sure. But this article is about my own experience.&lt;/p&gt;
+&lt;p&gt;However, the new design wasn’t so poor though. I can make do. On March 2nd, 2024 I recevied a new notification that says new update available. I did. I had to restart my evernote and … it took around 12-15 seconds to start.&lt;/p&gt;
+&lt;p&gt;It was horribly slow, even on the same notebook, if I clicked one note and then clicked another for editing, it would take a long time to render and then open in editing mode. I don’t have the best computer in the world, but still running a macbook with m1. That can run other stuff well.&lt;/p&gt;
+&lt;p&gt;After trying to troubleshoot for sometime, I finally tried to open other note apps (apple note and bear) and decided to move on.
+I’ll be working ( going back ) to &lt;a href=&#34;https://bear.app/&#34;&gt;bear&lt;/a&gt;. They are a small team, who built an amazing app. Very beautiful, simple and works.&lt;/p&gt;
+&lt;p&gt;So, since 2017 till now, tried my best to keep up with evernote and go back when I could, in the end, the bear killed the elephant.&lt;/p&gt;
+&lt;p&gt;&lt;img
+  src=&#34;https://bear.app/images/website-icons/card.jpg&#34;
+  alt=&#34;Bear.app&#34;
+  loading=&#34;lazy&#34;
+  decoding=&#34;async&#34;
+  class=&#34;full-width&#34;
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;This was my experience, I hope and pray other people are having better experience. And I hope, the evernote team would remember about simplicity.&lt;/p&gt;
+</description>
+      <author>Aryan Ahmed</author>
+      <guid>http://localhost:1313/posts/saying-goodbye-to-evernote-finally/</guid>
+      <pubDate>Sat, 02 Mar 2024 19:52:46 +0100</pubDate>
     </item>
     
   </channel>

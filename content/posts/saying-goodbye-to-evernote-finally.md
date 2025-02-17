@@ -1,6 +1,6 @@
 +++
 title = 'Saying Goodbye to Evernote Finally'
-date = 2024-03-2T19:52:46+01:00 #      March 2nd, 2024
+date = 2024-03-02T19:52:46+01:00
 draft = false
 +++
 

@@ -3,12 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-10-25T19:48:19+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/differences-between-ssl-and-tls/</loc>
-    <lastmod>2024-10-25T19:48:19+01:00</lastmod>
+    <lastmod>2024-12-16T19:53:11+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2024-12-16T19:53:11+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/differences-between-ssl-and-tls/</loc>
     <lastmod>2024-10-25T19:48:19+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/</loc>
@@ -25,6 +25,9 @@
   </url><url>
     <loc>http://localhost:1313/posts/rust-memory-ownership-and-borrowing/</loc>
     <lastmod>2024-06-27T19:43:22+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/saying-goodbye-to-evernote-finally/</loc>
+    <lastmod>2024-03-02T19:52:46+01:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
   </url>
