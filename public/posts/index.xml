@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Aryan&#39;s Journal</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Aryan&#39;s Journal</description>
+    <generator>Hugo</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Mon, 16 Dec 2024 19:46:16 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Url Shortener With Rust and Redis</title>
+      <link>http://localhost:1313/posts/building-a-url-shortener-with-rust-and-redis/</link>
+      <pubDate>Mon, 16 Dec 2024 19:46:16 +0100</pubDate>
+      <guid>http://localhost:1313/posts/building-a-url-shortener-with-rust-and-redis/</guid>
+      <description>&lt;p&gt;Our approach will be to make a plan for the features and work our way through.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;All the code could be found at &lt;a href=&#34;https://github.com/thearyanahmed/lucy&#34;&gt;https://github.com/thearyanahmed/lucy&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;So, getting started, our url shortener is a program, that stores a longer form of url (text) against an unique and short text. You can think of a hashmap. Where the values are URLs and keys are unique ids.&lt;/p&gt;&#xA;&lt;p&gt;We’ll need to identify the url based on the unique id. If it exists, we return it, if not, return a different result.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

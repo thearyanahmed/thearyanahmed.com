@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - http://localhost:1313/">
+    <title>Dynamic Trait to a Concrete Type in Rust | Aryan&#39;s Journal</title>
+    <meta name="description" content="">
+    <meta property="og:url" content="http://localhost:1313/posts/posts/dynamic-trait-to-a-concrete-type-in-rust/">
+  <meta property="og:site_name" content="Aryan&#39;s Journal">
+  <meta property="og:title" content="Dynamic Trait to a Concrete Type in Rust">
+  <meta property="og:description" content="As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.
+Every value in Rust is of a certain data type. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-16T19:48:45+01:00">
+    <meta property="article:modified_time" content="2024-12-16T19:48:45+01:00">
+
+    
+  <meta itemprop="name" content="Dynamic Trait to a Concrete Type in Rust">
+  <meta itemprop="description" content="As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.
+Every value in Rust is of a certain data type. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.">
+  <meta itemprop="datePublished" content="2024-12-16T19:48:45+01:00">
+  <meta itemprop="dateModified" content="2024-12-16T19:48:45+01:00">
+  <meta itemprop="wordCount" content="685">
+    
+    <link rel="canonical" href="http://localhost:1313/posts/posts/dynamic-trait-to-a-concrete-type-in-rust/">
+    <link rel="icon" href="http://localhost:1313//assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="Aryan&#39;s Journal" href="http://localhost:1313//atom.xml" />
+    <link rel="alternate" type="application/json" title="Aryan&#39;s Journal" href="http://localhost:1313//feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque">
+    
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 bricolage grotesque,-apple-system,BlinkMacSystemFont,segoe ui,Helvetica,Arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#fffdfa;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ddd;text-align:left;padding:8px}th{background-color:#f2f2f2} </style>
+  
+    
+  
+  
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "Dynamic Trait to a Concrete Type in Rust",
+      "headline": "Dynamic Trait to a Concrete Type in Rust",
+      "alternativeHeadline": "",
+      "description": "\u003cp\u003eAs rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.\u003c\/p\u003e\n\u003cp\u003eEvery value in Rust is of a certain \u003cem\u003edata type\u003c\/em\u003e. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.\u003c\/p\u003e",
+      "inLanguage": "en-gb",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http:\/\/localhost:1313\/posts\/posts\/dynamic-trait-to-a-concrete-type-in-rust\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "Aryan\u0027s Journal",
+      "copyrightYear" : "2024",
+      "dateCreated": "2024-12-16T19:48:45.00Z",
+      "datePublished": "2024-12-16T19:48:45.00Z",
+      "dateModified": "2024-12-16T19:48:45.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "Aryan's Journal",
+          "url": "http://localhost:1313/",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "http:\/\/localhost:1313\/",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "http://localhost:1313/",
+      "url" : "http:\/\/localhost:1313\/posts\/posts\/dynamic-trait-to-a-concrete-type-in-rust\/",
+      "wordCount" : "685",
+      "genre" : [ ],
+      "keywords" : [ ]
+  }
+  </script>
+  
+  
+  </head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="http://localhost:1313/">
+    <b>Aryan&#39;s Journal</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
+  
+  
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">Dynamic Trait to a Concrete Type in Rust</h2>
+      <p>As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.</p>
+<p>Every value in Rust is of a certain <em>data type</em>. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.</p>
+<p>What happens we need something dynamic of different types?</p>
+<h2 id="context">Context</h2>
+<p>I’m trying to build a storage library, that supports multiple drivers. Sort of like <a href="https://laravel.com/docs/9.x/filesystem">laravel’s storage</a> class. In my design, we’d have something like</p>
+<pre><code>Storage::put('file-01.txt', content);
+
+Storage::disk('s3')-&gt;put('file-02.png', content);
+
+Storage::download('file-03.docs');
+</code></pre>
+<p>As it’ll have different types of disks, which will work as adapters to our storage.</p>
+<h2 id="the-problem">The problem</h2>
+<p>The problem I was facing was having different config files for each type of disks. Our LocalFileAdapter , S3BucketFileAdapater , FTPFileAdapter each will have different type of config files. Simply put, S3BucketFileAdapater will have public key ,secret key and bucket name. LocalFileAdapater will not need these.</p>
+<h3 id="sketching">Sketching</h3>
+<p>Now, I want to have a method something similar to Storage::new(config) or something like this. The config should have which adapter/s to use, with their appropriate configuration (and unique) values.</p>
+<h3 id="two-cfgs">Two cfgs</h3>
+<p>For better understanding, I’m paining two config structs.</p>
+<pre><code>pub struct LocalFileSystemAdapterConfig {
+  pub root_dir: String,
+}
+
+pub struct S3AdapterConfig {
+  pub public_key: String,
+  pub secret_key: String,
+  pub bucket: String,
+  pub use_path_style_endpoint: false,
+}
+</code></pre>
+<p>And I need something like</p>
+<pre><code>trait StorageAdapter {
+  // ... methods
+}
+struct Storage {
+  disk: StorageAdapter,
+  // other props
+}
+
+let storage = Storage::from(LocalFileSystemAdapterConfig | S3AdapterConfig); 
+
+// and based on the given config
+storage.disk = LocalFileSystem | S3
+</code></pre>
+<p>Defining a function that takes a dynamic parameter and casts it down to a specific / concrete type. The initial thought was maybe we should have something like</p>
+<pre><code>struct LocalAdapterConfig {
+  base_dir: String,
+}
+
+impl LocalAdapter {
+  pub fn new&lt;T : dyn StorageAdapterConfigTrait&gt;(config: T) -&gt; LocalAdapter {
+    let local_config = config as LocalAdapterConfig;
+    // THIS IS NOT ALLOWED
+  }
+}
+</code></pre>
+<p>The attempt resulted in a failure and gave me:</p>
+<pre><code>... an `as` expression can only be used to convert between primitive types
+</code></pre>
+<p>Rust is saying, you can use the as keyword to convert between primitive types. This was not working. But as we are using a dynamictrait (as an interface concept). We can cast that trait to a concrete type.</p>
+<h2 id="solution-downcast">Solution: Downcast</h2>
+<p>In this case, our config: T would be converted to LocalAdapterConfig. Though the method signature needs to change a bit.</p>
+<p>We want to use the Any trait, it uses reflection to allow dynamic typing of any &lsquo;static type.</p>
+<blockquote>
+<p>Downcasting is converting a trait into a concrete type.</p></blockquote>
+<p>Our initial code is as follows</p>
+<pre><code>use std::any::Any;
+
+pub struct LocalFileSystemAdapterConfig {
+    pub base_directory: String,
+}
+
+pub struct LocalFileSystemAdapter {
+  pub base_dir: String, // just for demo purpose
+}
+
+// the trait config that every storage adapter's config will implement
+pub trait StorageAdapterConfig {
+    fn as_any(&amp;self) -&gt; &amp;dyn Any;
+}
+</code></pre>
+<p>We need the as_any method to be implemented for concrete struct/s where we want to allow <em>downcasting</em>. Therefore,</p>
+<pre><code>use std::any::Any;
+
+impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
+    fn as_any(&amp;self) -&gt; &amp;dyn Any {
+        self
+    }
+}
+</code></pre>
+<p>We also need to change our method’s signature from</p>
+<pre><code>pub fn new&lt;T : dyn StorageAdapterConfigTrait&gt;(config: T) 
+</code></pre>
+<p>to</p>
+<pre><code>pub fn new(config: &amp;dyn Any)
+
+// make sure to import std::any::Any;
+</code></pre>
+<p>And finally, to downcast a variable of type dyn Any to our concrete LocalFileSystemAdapterConfig ,</p>
+<pre><code>let cfg : &amp;LocalFileSystemAdapterConfig = config
+            .downcast_ref::&lt;LocalFileSystemAdapterConfig&gt;()
+            .expect(&quot;failed to downcast&quot;);
+
+// the syntax is 
+// .downcast_ref::&lt;$CONCRETE_TYPE&gt;().expect(&quot;msg&quot;);
+</code></pre>
+<p>The full code,</p>
+<pre><code>impl LocalFileSystemAdapter {
+
+    pub fn new(config: &amp;dyn Any) -&gt; LocalFileSystemAdapter {
+
+        let cfg : &amp;LocalFileSystemAdapterConfig = config
+            .downcast_ref::&lt;LocalFileSystemAdapterConfig&gt;()
+            .expect(&quot;failed to downcast&quot;);
+
+        let base_dir = &amp;cfg.base_directory;
+
+        LocalFileSystemAdapter {
+            base_dir: base_dir.to_string(),
+        }
+    }
+  
+  // ...
+}
+</code></pre>
+<p>Our IDE picks up the change and returns proper intellisense.</p>
+<p><img
+  src="https://cdn-images-1.medium.com/max/3676/1*Wc_P7YRnKepKZIwN-e-zlA.png"
+  alt="Downcasting a dyn trait to a concrete type"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
+<p>***Note *<em>maybe there are better ways of achieving the same result, maybe the API Design could have been better to avoid it in the first place. Well, I’m still learning rust.</em></p>
+<p>Found a mistake? Feel free to point it out.</p>
+
+      
+      <div class="post-date">
+        <span class="g time">December 16, 2024 </span> &#8729;
+         
+      </div>
+      
+    </section>
+    
+    
+    
+  </div>
+</main>
+</body>
+</html>

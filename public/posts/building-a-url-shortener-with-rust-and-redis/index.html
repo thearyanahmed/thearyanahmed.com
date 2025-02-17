@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - http://localhost:1313/">
+    <title>Building a Url Shortener With Rust and Redis | Aryan&#39;s Journal</title>
+    <meta name="description" content="Random bits and bytes from Aryan&#39;s Journey">
+    <meta property="og:url" content="http://localhost:1313/posts/building-a-url-shortener-with-rust-and-redis/">
+  <meta property="og:site_name" content="Aryan&#39;s Journal">
+  <meta property="og:title" content="Building a Url Shortener With Rust and Redis">
+  <meta property="og:description" content="Our approach will be to make a plan for the features and work our way through.
+All the code could be found at https://github.com/thearyanahmed/lucy
+So, getting started, our url shortener is a program, that stores a longer form of url (text) against an unique and short text. You can think of a hashmap. Where the values are URLs and keys are unique ids.
+We’ll need to identify the url based on the unique id. If it exists, we return it, if not, return a different result.">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-16T19:46:16+01:00">
+    <meta property="article:modified_time" content="2024-12-16T19:46:16+01:00">
+
+    
+  <meta itemprop="name" content="Building a Url Shortener With Rust and Redis">
+  <meta itemprop="description" content="Our approach will be to make a plan for the features and work our way through.
+All the code could be found at https://github.com/thearyanahmed/lucy
+So, getting started, our url shortener is a program, that stores a longer form of url (text) against an unique and short text. You can think of a hashmap. Where the values are URLs and keys are unique ids.
+We’ll need to identify the url based on the unique id. If it exists, we return it, if not, return a different result.">
+  <meta itemprop="datePublished" content="2024-12-16T19:46:16+01:00">
+  <meta itemprop="dateModified" content="2024-12-16T19:46:16+01:00">
+  <meta itemprop="wordCount" content="1263">
+    
+    <link rel="canonical" href="http://localhost:1313/posts/building-a-url-shortener-with-rust-and-redis/">
+    <link rel="icon" href="http://localhost:1313//assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="Aryan&#39;s Journal" href="http://localhost:1313//atom.xml" />
+    <link rel="alternate" type="application/json" title="Aryan&#39;s Journal" href="http://localhost:1313//feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque">
+    
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 bricolage grotesque,-apple-system,BlinkMacSystemFont,segoe ui,Helvetica,Arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#fffdfa;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ddd;text-align:left;padding:8px}th{background-color:#f2f2f2} </style>
+  
+    
+  
+  
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "Building a Url Shortener With Rust and Redis",
+      "headline": "Building a Url Shortener With Rust and Redis",
+      "alternativeHeadline": "",
+      "description": "\u003cp\u003eOur approach will be to make a plan for the features and work our way through.\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eAll the code could be found at \u003ca href=\u0022https:\/\/github.com\/thearyanahmed\/lucy\u0022\u003ehttps:\/\/github.com\/thearyanahmed\/lucy\u003c\/a\u003e\u003c\/p\u003e\u003c\/blockquote\u003e\n\u003cp\u003eSo, getting started, our url shortener is a program, that stores a longer form of url (text) against an unique and short text. You can think of a hashmap. Where the values are URLs and keys are unique ids.\u003c\/p\u003e\n\u003cp\u003eWe’ll need to identify the url based on the unique id. If it exists, we return it, if not, return a different result.\u003c\/p\u003e",
+      "inLanguage": "en-gb",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http:\/\/localhost:1313\/posts\/building-a-url-shortener-with-rust-and-redis\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "Aryan\u0027s Journal",
+      "copyrightYear" : "2024",
+      "dateCreated": "2024-12-16T19:46:16.00Z",
+      "datePublished": "2024-12-16T19:46:16.00Z",
+      "dateModified": "2024-12-16T19:46:16.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "Aryan's Journal",
+          "url": "http://localhost:1313/",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "http:\/\/localhost:1313\/assets\/favicon.ico",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "http://localhost:1313/assets/favicon.ico",
+      "url" : "http:\/\/localhost:1313\/posts\/building-a-url-shortener-with-rust-and-redis\/",
+      "wordCount" : "1263",
+      "genre" : [ ],
+      "keywords" : [ ]
+  }
+  </script>
+  
+  
+  </head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="http://localhost:1313/">
+    <b>Aryan&#39;s Journal</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
+  
+  
+  <li class="">
+    <a href="/posts/"><span>Post</span></a>
+    
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">Building a Url Shortener With Rust and Redis</h2>
+      <p>Our approach will be to make a plan for the features and work our way through.</p>
+<blockquote>
+<p>All the code could be found at <a href="https://github.com/thearyanahmed/lucy">https://github.com/thearyanahmed/lucy</a></p></blockquote>
+<p>So, getting started, our url shortener is a program, that stores a longer form of url (text) against an unique and short text. You can think of a hashmap. Where the values are URLs and keys are unique ids.</p>
+<p>We’ll need to identify the url based on the unique id. If it exists, we return it, if not, return a different result.</p>
+<p>The unique ids should contain characters that can create a valid url. Because usually we’ll have an endpoint that contains the unique id. So we’ll use [0-9,a-z,A-Z] values.</p>
+<h2 id="unique-ids">Unique IDs</h2>
+<p>How many unique ids can be created from these values? 0–9 = 10, a-z and A-Z both containing 26 each. Total 10+26+26= 62 possible characters. If we use 6 characters, we should be able to create 62^6 = 56,800,235,584 values.</p>
+<p>For our simple project, this should be more than enough. The formula is number of characters we can choose ^ characters we’ll use.</p>
+<blockquote>
+<p>A ^ n = Number of possible values</p></blockquote>
+<p>Summary till this point
+Build a program that stores valid urls against an unique id</p>
+<p>Have the functionality to find an url by its id</p>
+<p>We will be focusing on the core part of functionalities now. We want to build a library that gives us a the mentioned features.</p>
+<h2 id="coding-with-rust">Coding with Rust</h2>
+<p>We’ll have a simple library, that exposes find , record and all functions to our clients. And will support multiple datastores. I want to lay out the approach from a user’s perspective. We have a service (struct) called Lucy , that gives us the functionality for the following.</p>
+<ul>
+<li>Saving a new record</li>
+<li>Finding a record by uuid</li>
+<li>Finding all records</li>
+</ul>
+<p>The records are saved in a datastore, the datastore can be anything, hashmap, redis, mysql etc. It is accessed by a trait object ( dyn TraitName ). This trait, in our case is Datastore .</p>
+<h2 id="datastore">Datastore</h2>
+<p>We want our service class to have access to a datastore via a public trait object. So we can have support for multiple data stores.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">trait</span> <span style="color:#111">Datastore</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">fn</span> <span style="color:#75af00">find</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">,</span> <span style="color:#111">uuid</span>: <span style="color:#00a8c8">&amp;</span><span style="color:#00a8c8">str</span><span style="color:#111">)</span> -&gt; <span style="color:#111">Result</span><span style="color:#f92672">&lt;</span><span style="color:#111">Record</span><span style="color:#111">,</span> <span style="color:#111">LucyError</span><span style="color:#f92672">&gt;</span><span style="color:#111">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">fn</span> <span style="color:#75af00">record</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">,</span> <span style="color:#111">record</span>: <span style="color:#75af00">Record</span><span style="color:#111">)</span> -&gt; <span style="color:#111">Result</span><span style="color:#f92672">&lt;</span><span style="color:#00a8c8">bool</span><span style="color:#111">,</span> <span style="color:#111">String</span><span style="color:#f92672">&gt;</span><span style="color:#111">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">fn</span> <span style="color:#75af00">all</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">)</span> -&gt; <span style="color:#111">Vec</span><span style="color:#f92672">&lt;</span><span style="color:#111">Record</span><span style="color:#f92672">&gt;</span><span style="color:#111">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><p>We’ll call our library Lucy (just needed a name). And the structure is simple.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">struct</span> <span style="color:#75af00">Lucy</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">ds</span>: <span style="color:#111">Box</span><span style="color:#f92672">&lt;</span><span style="color:#00a8c8">dyn</span> <span style="color:#111">Datastore</span><span style="color:#f92672">&gt;</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">impl</span> <span style="color:#111">Lucy</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">fn</span> <span style="color:#75af00">new</span><span style="color:#111">(</span><span style="color:#111">driver</span>: <span style="color:#75af00">DatastoreDriver</span><span style="color:#111">)</span> -&gt; <span style="color:#75af00">Lucy</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">fn</span> <span style="color:#75af00">find</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">,</span> <span style="color:#111">uuid</span>: <span style="color:#00a8c8">&amp;</span><span style="color:#00a8c8">str</span><span style="color:#111">)</span> -&gt; <span style="color:#111">Result</span><span style="color:#f92672">&lt;</span><span style="color:#111">Record</span><span style="color:#111">,</span> <span style="color:#111">LucyError</span><span style="color:#f92672">&gt;</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">fn</span> <span style="color:#75af00">record</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">,</span> <span style="color:#111">record</span>: <span style="color:#75af00">Record</span><span style="color:#111">)</span> -&gt; <span style="color:#111">Result</span><span style="color:#f92672">&lt;</span><span style="color:#00a8c8">bool</span><span style="color:#111">,</span> <span style="color:#111">String</span><span style="color:#f92672">&gt;</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">fn</span> <span style="color:#75af00">all</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">)</span> -&gt; <span style="color:#111">Vec</span><span style="color:#f92672">&lt;</span><span style="color:#111">Record</span><span style="color:#f92672">&gt;</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><p>I’d like to address a few other things. The Record from the above code is simply a structure for holding an uuid and url.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">struct</span> <span style="color:#75af00">Record</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">pub</span> <span style="color:#111">url</span>: <span style="color:#111">String</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">pub</span> <span style="color:#111">uuid</span>: <span style="color:#111">String</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><p>And LucyError is an enum for the errors specific from this library.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">enum</span> <span style="color:#75af00">LucyError</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">UrlNotFoundError</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">NotAValidUrlError</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">impl</span> <span style="color:#111">LucyError</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">fn</span> <span style="color:#75af00">to_string</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#111">self</span><span style="color:#111">)</span> -&gt; <span style="color:#111">String</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">match</span> <span style="color:#f92672">*</span><span style="color:#111">self</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">Self</span>::<span style="color:#111">UrlNotFoundError</span> <span style="color:#f92672">=&gt;</span> <span style="color:#d88200">&#34;url not found&#34;</span><span style="color:#111">.</span><span style="color:#111">to_string</span><span style="color:#111">(),</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">Self</span>::<span style="color:#111">NotAValidUrlError</span> <span style="color:#f92672">=&gt;</span> <span style="color:#d88200">&#34;not a valid url&#34;</span><span style="color:#111">.</span><span style="color:#111">to_string</span><span style="color:#111">(),</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><h2 id="implement-lucy">Implement Lucy</h2>
+<p>Our simple Lucy needs to be instantiated with a datastore , which can be selected from the outside.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">impl</span> <span style="color:#111">Lucy</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">fn</span> <span style="color:#75af00">new</span><span style="color:#111">(</span><span style="color:#111">driver</span>: <span style="color:#75af00">DatastoreDriver</span><span style="color:#111">)</span> -&gt; <span style="color:#75af00">Lucy</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">let</span> <span style="color:#111">ds</span> <span style="color:#f92672">=</span> <span style="color:#111">Lucy</span>::<span style="color:#111">get_datastore</span><span style="color:#111">(</span><span style="color:#111">driver</span><span style="color:#111">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">Lucy</span> <span style="color:#111">{</span> <span style="color:#111">ds</span> <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">fn</span> <span style="color:#75af00">get_datastore</span><span style="color:#111">(</span><span style="color:#111">driver</span>: <span style="color:#75af00">DatastoreDriver</span><span style="color:#111">)</span> -&gt; <span style="color:#111">Box</span><span style="color:#f92672">&lt;</span><span style="color:#00a8c8">dyn</span> <span style="color:#111">Datastore</span><span style="color:#f92672">&gt;</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">match</span> <span style="color:#111">driver</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">DatastoreDriver</span>::<span style="color:#111">InMemoryHashmap</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">Box</span>::<span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#111">HashmapStore</span>::<span style="color:#111">new</span><span style="color:#111">()),</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">DatastoreDriver</span>::<span style="color:#111">Redis</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">Box</span>::<span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#111">RedisStore</span>::<span style="color:#111">new</span><span style="color:#111">()),</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><p>We want our datastore to be something dynamic, something that implements Datastore trait, anything that implements Datastore trait. For starters, we had two options, either go with generics or dynamic dispatch.</p>
+<p>Box is a pointer to heap allocation. More details here.</p>
+<p>From our library’s user point of view, a user (dev) would run the following code to create an instance of our Lucyservice.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">let</span> <span style="color:#00a8c8">mut</span> <span style="color:#111">lucy</span> <span style="color:#f92672">=</span> <span style="color:#111">Lucy</span>::<span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#111">DatastoreDriver</span>::<span style="color:#111">InMemoryHashmap</span><span style="color:#111">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">To</span> <span style="color:#111">record</span> <span style="color:#111">(</span><span style="color:#111">save</span><span style="color:#111">)</span> <span style="color:#111">an</span> <span style="color:#111">url</span><span style="color:#111">,</span> <span style="color:#111">we</span> <span style="color:#111">call</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">for</span> <span style="color:#111">_</span> <span style="color:#00a8c8">in</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">..</span><span style="color:#ae81ff">100</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#00a8c8">match</span> <span style="color:#111">lucy</span><span style="color:#111">.</span><span style="color:#111">record</span><span style="color:#111">(</span><span style="color:#111">Record</span>::<span style="color:#111">new</span><span style="color:#111">(</span><span style="color:#111">faker</span><span style="color:#111">.</span><span style="color:#111">gen</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#111">FakeOption</span>::<span style="color:#00a8c8">URL</span><span style="color:#111">)))</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">err</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">println!</span><span style="color:#111">(</span><span style="color:#d88200">&#34;error: </span><span style="color:#d88200">{}</span><span style="color:#d88200">&#34;</span><span style="color:#111">,</span><span style="color:#111">err</span><span style="color:#111">),</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#111">_</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">{},</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><p>To find a specific one,</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">match</span> <span style="color:#111">lucy</span><span style="color:#111">.</span><span style="color:#111">find</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#111">y</span><span style="color:#111">)</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">Ok</span><span style="color:#111">(</span><span style="color:#111">r</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">println!</span><span style="color:#111">(</span><span style="color:#d88200">&#34;FOUND URL: </span><span style="color:#d88200">{}</span><span style="color:#d88200">&#34;</span><span style="color:#111">,</span><span style="color:#111">r</span><span style="color:#111">.</span><span style="color:#111">url</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#111">},</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">e</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">print!</span><span style="color:#111">(</span><span style="color:#d88200">&#34;NOT FOUND </span><span style="color:#d88200">{}</span><span style="color:#d88200">&#34;</span><span style="color:#111">,</span><span style="color:#111">e</span><span style="color:#111">.</span><span style="color:#111">to_string</span><span style="color:#111">()),</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><p>And to find all of them,</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">for</span> <span style="color:#111">record</span> <span style="color:#00a8c8">in</span> <span style="color:#111">lucy</span><span style="color:#111">.</span><span style="color:#111">all</span><span style="color:#111">()</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">println!</span><span style="color:#111">(</span><span style="color:#d88200">&#34;uuid: </span><span style="color:#d88200">{}</span><span style="color:#d88200"> url:</span><span style="color:#d88200">{}</span><span style="color:#d88200">&#34;</span><span style="color:#111">,</span><span style="color:#111">record</span><span style="color:#111">.</span><span style="color:#111">uuid</span><span style="color:#111">,</span> <span style="color:#111">record</span><span style="color:#111">.</span><span style="color:#111">url</span><span style="color:#111">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><p>It’s a very simple API. Let’s implement the RedisStore to satisfy Datastore trait.</p>
+<h2 id="implement-redisstore">Implement RedisStore</h2>
+<p>Our redis store for only holds a connect for now. We use the conventional new function to return an new instance that has the connection to communicate with redis.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">struct</span> <span style="color:#75af00">RedisStore</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">con</span>: <span style="color:#75af00">redis</span>::<span style="color:#111">Connection</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a8c8">impl</span> <span style="color:#111">RedisStore</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#00a8c8">pub</span> <span style="color:#00a8c8">fn</span> <span style="color:#75af00">new</span><span style="color:#111">()</span> -&gt; <span style="color:#75af00">RedisStore</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// @TODO take connection string as parameter.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">let</span> <span style="color:#111">client</span> <span style="color:#f92672">=</span> <span style="color:#111">redis</span>::<span style="color:#111">Client</span>::<span style="color:#111">open</span><span style="color:#111">(</span><span style="color:#d88200">&#34;redis://127.0.0.1/&#34;</span><span style="color:#111">).</span><span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#d88200">&#34;could not connect to redis&#34;</span><span style="color:#111">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">let</span> <span style="color:#111">con</span> <span style="color:#f92672">=</span> <span style="color:#111">client</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">.</span><span style="color:#111">get_connection</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">.</span><span style="color:#111">expect</span><span style="color:#111">(</span><span style="color:#d88200">&#34;could not get connection to redis&#34;</span><span style="color:#111">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">RedisStore</span> <span style="color:#111">{</span> <span style="color:#111">con</span> <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#111">}</span>
+</span></span></code></pre></div><h2 id="implement-datastore-for-redisstore">Implement Datastore for RedisStore</h2>
+<p>For redis’s data structure, it’ll only be a simple string SET KEY VALUE where the KEY is an uuid and value is the URL itself. I’m using redis-rs crate.</p>
+<p><strong>record</strong> To set a record, we just run SET with given arguments.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">fn</span> <span style="color:#75af00">record</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">,</span> <span style="color:#111">record</span>: <span style="color:#75af00">Record</span><span style="color:#111">)</span> -&gt; <span style="color:#111">Result</span><span style="color:#f92672">&lt;</span><span style="color:#00a8c8">bool</span><span style="color:#111">,</span> <span style="color:#111">String</span><span style="color:#f92672">&gt;</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">match</span> <span style="color:#111">redis</span>::<span style="color:#111">cmd</span><span style="color:#111">(</span><span style="color:#d88200">&#34;SET&#34;</span><span style="color:#111">).</span><span style="color:#111">arg</span><span style="color:#111">(</span><span style="color:#111">record</span><span style="color:#111">.</span><span style="color:#111">uuid</span><span style="color:#111">).</span><span style="color:#111">arg</span><span style="color:#111">(</span><span style="color:#111">record</span><span style="color:#111">.</span><span style="color:#111">url</span><span style="color:#111">).</span><span style="color:#111">query</span>::<span style="color:#f92672">&lt;</span><span style="color:#111">String</span><span style="color:#f92672">&gt;</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">.</span><span style="color:#111">con</span><span style="color:#111">)</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">Ok</span><span style="color:#111">(</span><span style="color:#111">_</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">Ok</span><span style="color:#111">(</span><span style="color:#00a8c8">true</span><span style="color:#111">),</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">err</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">err</span><span style="color:#111">.</span><span style="color:#111">to_string</span><span style="color:#111">()),</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span></code></pre></div><p>Explanation, we run a command using cmd , with our arguments. The order of the arguments are necessary.</p>
+<p>find To find a record, we use the previous approach, simply with GET command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>  <span style="color:#00a8c8">fn</span> <span style="color:#75af00">find</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">,</span> <span style="color:#111">uuid</span>: <span style="color:#00a8c8">&amp;</span><span style="color:#00a8c8">str</span><span style="color:#111">)</span> -&gt; <span style="color:#111">Result</span><span style="color:#f92672">&lt;</span><span style="color:#111">Record</span><span style="color:#111">,</span> <span style="color:#111">LucyError</span><span style="color:#f92672">&gt;</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">match</span> <span style="color:#111">redis</span>::<span style="color:#111">cmd</span><span style="color:#111">(</span><span style="color:#d88200">&#34;GET&#34;</span><span style="color:#111">).</span><span style="color:#111">arg</span><span style="color:#111">(</span><span style="color:#111">uuid</span><span style="color:#111">).</span><span style="color:#111">query</span>::<span style="color:#f92672">&lt;</span><span style="color:#111">String</span><span style="color:#f92672">&gt;</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">.</span><span style="color:#111">con</span><span style="color:#111">)</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">Ok</span><span style="color:#111">(</span><span style="color:#111">url</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#00a8c8">match</span> <span style="color:#111">Record</span>::<span style="color:#111">from</span><span style="color:#111">(</span><span style="color:#111">url</span><span style="color:#111">,</span> <span style="color:#111">uuid</span><span style="color:#111">.</span><span style="color:#111">to_string</span><span style="color:#111">())</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#111">Ok</span><span style="color:#111">(</span><span style="color:#111">record</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">Ok</span><span style="color:#111">(</span><span style="color:#111">record</span><span style="color:#111">),</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">_</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">LucyError</span>::<span style="color:#111">NotAValidUrlError</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">_</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">LucyError</span>::<span style="color:#111">UrlNotFoundError</span><span style="color:#111">),</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span></code></pre></div><p>all To implement all method, which will retrieve all saved records in our datastore, we first need to get all the keys and then find all the uuids and then making a bulk call using MGET key1 key2 … keyNwith all the given ids.</p>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>    <span style="color:#00a8c8">fn</span> <span style="color:#75af00">all</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">)</span> -&gt; <span style="color:#111">Vec</span><span style="color:#f92672">&lt;</span><span style="color:#111">Record</span><span style="color:#f92672">&gt;</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Get all the keys
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">let</span> <span style="color:#111">keys</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">match</span> <span style="color:#111">redis</span>::<span style="color:#111">cmd</span><span style="color:#111">(</span><span style="color:#d88200">&#34;KEYS&#34;</span><span style="color:#111">).</span><span style="color:#111">arg</span><span style="color:#111">(</span><span style="color:#d88200">&#34;*&#34;</span><span style="color:#111">).</span><span style="color:#111">query</span>::<span style="color:#f92672">&lt;</span><span style="color:#111">Vec</span><span style="color:#f92672">&lt;</span><span style="color:#111">String</span><span style="color:#f92672">&gt;&gt;</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">.</span><span style="color:#111">con</span><span style="color:#111">)</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">Ok</span><span style="color:#111">(</span><span style="color:#111">keyset</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">keyset</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">_</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">vec!</span><span style="color:#111">[],</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">};</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">if</span> <span style="color:#111">keys</span><span style="color:#111">.</span><span style="color:#111">len</span><span style="color:#111">()</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">return</span> <span style="color:#111">vec!</span><span style="color:#111">[];</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">let</span> <span style="color:#00a8c8">mut</span> <span style="color:#111">cmd</span> <span style="color:#f92672">=</span> <span style="color:#111">redis</span>::<span style="color:#111">cmd</span><span style="color:#111">(</span><span style="color:#d88200">&#34;MGET&#34;</span><span style="color:#111">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// build the command
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">for</span> <span style="color:#111">k</span> <span style="color:#00a8c8">in</span> <span style="color:#111">keys</span><span style="color:#111">.</span><span style="color:#111">clone</span><span style="color:#111">()</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">cmd</span><span style="color:#111">.</span><span style="color:#111">arg</span><span style="color:#111">(</span><span style="color:#111">k</span><span style="color:#111">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// get redis results using MGET key1, key2, ..., keyN
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">let</span> <span style="color:#111">urls</span> <span style="color:#f92672">=</span> <span style="color:#00a8c8">match</span> <span style="color:#111">cmd</span><span style="color:#111">.</span><span style="color:#111">query</span>::<span style="color:#f92672">&lt;</span><span style="color:#111">Vec</span><span style="color:#f92672">&lt;</span><span style="color:#111">String</span><span style="color:#f92672">&gt;&gt;</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#00a8c8">mut</span> <span style="color:#111">self</span><span style="color:#111">.</span><span style="color:#111">con</span><span style="color:#111">)</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">Ok</span><span style="color:#111">(</span><span style="color:#111">results</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">results</span><span style="color:#111">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">_</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">vec!</span><span style="color:#111">[],</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">};</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">if</span> <span style="color:#111">urls</span><span style="color:#111">.</span><span style="color:#111">len</span><span style="color:#111">()</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">return</span> <span style="color:#111">vec!</span><span style="color:#111">[];</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Result mapping
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#00a8c8">let</span> <span style="color:#00a8c8">mut</span> <span style="color:#111">res</span> : <span style="color:#111">Vec</span><span style="color:#f92672">&lt;</span><span style="color:#111">Record</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> <span style="color:#111">vec!</span><span style="color:#111">[];</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#00a8c8">for</span> <span style="color:#111">(</span><span style="color:#111">i</span><span style="color:#111">,</span> <span style="color:#111">uuid</span><span style="color:#111">)</span> <span style="color:#00a8c8">in</span> <span style="color:#111">keys</span><span style="color:#111">.</span><span style="color:#111">iter</span><span style="color:#111">().</span><span style="color:#111">enumerate</span><span style="color:#111">()</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">let</span> <span style="color:#111">url</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span><span style="color:#111">urls</span><span style="color:#111">[</span><span style="color:#111">i</span><span style="color:#111">];</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#00a8c8">match</span> <span style="color:#111">Record</span>::<span style="color:#111">from</span><span style="color:#111">(</span><span style="color:#111">url</span><span style="color:#111">.</span><span style="color:#111">to_string</span><span style="color:#111">(),</span> <span style="color:#111">uuid</span><span style="color:#111">.</span><span style="color:#111">to_string</span><span style="color:#111">())</span> <span style="color:#111">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">Ok</span><span style="color:#111">(</span><span style="color:#111">record</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">res</span><span style="color:#111">.</span><span style="color:#111">push</span><span style="color:#111">(</span><span style="color:#111">record</span><span style="color:#111">),</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#111">Err</span><span style="color:#111">(</span><span style="color:#111">_</span><span style="color:#111">)</span> <span style="color:#f92672">=&gt;</span> <span style="color:#111">{},</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">res</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#111">}</span>
+</span></span></code></pre></div><p>And that does it. This is the core. Using it with a REST api, gRPC or even building a CLI or anything else is up to the dev. If the given datastores don’t work, simply write a datastore that implements Datastore.</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>This code doesn’t have any tests written, not yet at least.</li>
+<li>This is just a demo project.</li>
+<li>Doesn’t have a method for find_by_url to check if an url exists already.</li>
+<li>Welcoming mistakes to be pointed out.</li>
+<li>UUID collision was not addressed in the code, not yet at least.</li>
+<li>An implementation for serving to the web and over gRPC using Tokio Tonic is in drafts (built for learning purpose only).</li>
+</ul>
+<p>The following logic was using to generate uuid of a given length.</p>
+<h2 id="generate-uuid">Generate UUID</h2>
+<div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">let</span> <span style="color:#111">unique_string</span>: <span style="color:#111">String</span> <span style="color:#f92672">=</span> <span style="color:#111">rand</span>::<span style="color:#111">thread_rng</span><span style="color:#111">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">.</span><span style="color:#111">sample_iter</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#111">Alphanumeric</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">.</span><span style="color:#111">take</span><span style="color:#111">(</span><span style="color:#111">char_length</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">.</span><span style="color:#111">map</span><span style="color:#111">(</span><span style="color:#00a8c8">char</span>::<span style="color:#111">from</span><span style="color:#111">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#111">.</span><span style="color:#111">collect</span><span style="color:#111">();</span>
+</span></span></code></pre></div><h2 id="quick-links">Quick Links</h2>
+<ul>
+<li>A video on using <a href="https://www.youtube.com/watch?v=gocwRvLhDf8&amp;t=1s&amp;ab_channel=TomScott">alpha numeric ids for n characters by Tom Scott</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Consistent_hashing">Consistent hashing</a></li>
+<li>An article on <a href="https://tom-e-white.com/2007/11/consistent-hashing.html">Consistent hashing</a> by Tom E White</li>
+<li>More on <a href="https://doc.rust-lang.org/std/boxed/struct.Box.html">Rust’s std::boxed::Box</a></li>
+</ul>
+
+      
+      <div class="post-date">
+        <span class="g time">December 16, 2024 </span> &#8729;
+         
+      </div>
+      
+    </section>
+    
+    
+    <div id="comments">
+      
+<script src="https://utteranc.es/client.js"
+    repo=canhtran/maverick
+    issue-term="pathname"
+    theme=github-light
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+    </div>
+    
+    
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - http://localhost:1313/">
+    <title>Prepared Statements in Sql | Aryan&#39;s Journal</title>
+    <meta name="description" content="">
+    <meta property="og:url" content="http://localhost:1313/posts/posts/prepared-statements-in-sql/">
+  <meta property="og:site_name" content="Aryan&#39;s Journal">
+  <meta property="og:title" content="Prepared Statements in Sql">
+  <meta property="og:description" content="Prepared statements are a common thing sql world. It has many benefits like it can execute the same (or similar) SQL statements repeatedly with high efficiency. It can also prevent one of the biggest security vulnerabilities, SQL injection.
+Compared to executing the query directly, there are primarily 3 advantages. Taking these points from w3schools,
+Prepared statements reduce parsing time as the preparation on the query is done only once (although the statement is executed multiple times).">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-16T19:52:18+01:00">
+    <meta property="article:modified_time" content="2024-12-16T19:52:18+01:00">
+
+    
+  <meta itemprop="name" content="Prepared Statements in Sql">
+  <meta itemprop="description" content="Prepared statements are a common thing sql world. It has many benefits like it can execute the same (or similar) SQL statements repeatedly with high efficiency. It can also prevent one of the biggest security vulnerabilities, SQL injection.
+Compared to executing the query directly, there are primarily 3 advantages. Taking these points from w3schools,
+Prepared statements reduce parsing time as the preparation on the query is done only once (although the statement is executed multiple times).">
+  <meta itemprop="datePublished" content="2024-12-16T19:52:18+01:00">
+  <meta itemprop="dateModified" content="2024-12-16T19:52:18+01:00">
+  <meta itemprop="wordCount" content="794">
+    
+    <link rel="canonical" href="http://localhost:1313/posts/posts/prepared-statements-in-sql/">
+    <link rel="icon" href="http://localhost:1313//assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="Aryan&#39;s Journal" href="http://localhost:1313//atom.xml" />
+    <link rel="alternate" type="application/json" title="Aryan&#39;s Journal" href="http://localhost:1313//feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque">
+    
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 bricolage grotesque,-apple-system,BlinkMacSystemFont,segoe ui,Helvetica,Arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#fffdfa;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ddd;text-align:left;padding:8px}th{background-color:#f2f2f2} </style>
+  
+    
+  
+  
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "Prepared Statements in Sql",
+      "headline": "Prepared Statements in Sql",
+      "alternativeHeadline": "",
+      "description": "\u003cp\u003e\u003cimg\n  src=\u0022https:\/\/cdn-images-1.medium.com\/max\/2000\/1*tmEFJ0LreB8wabdi67XY-Q.jpeg\u0022\n  alt=\u0022\u0022\n  loading=\u0022lazy\u0022\n  decoding=\u0022async\u0022\n  class=\u0022full-width\u0022\n\/\u003e\n\n\u003c\/p\u003e\n\u003cp\u003e\u003cstrong\u003ePrepared statement\u003c\/strong\u003es are a common thing sql world. It has many benefits like it can execute the same (or similar) SQL statements repeatedly with high efficiency. It can also prevent one of the biggest security vulnerabilities, \u003cstrong\u003eSQL injection\u003c\/strong\u003e.\u003c\/p\u003e\n\u003cp\u003eCompared to executing the query directly, there are primarily 3 advantages. Taking these points from w3schools,\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e\n\u003cp\u003ePrepared statements reduce parsing time as the preparation on the query is done only once (although the statement is executed multiple times).\u003c\/p\u003e",
+      "inLanguage": "en-gb",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http:\/\/localhost:1313\/posts\/posts\/prepared-statements-in-sql\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "Aryan\u0027s Journal",
+      "copyrightYear" : "2024",
+      "dateCreated": "2024-12-16T19:52:18.00Z",
+      "datePublished": "2024-12-16T19:52:18.00Z",
+      "dateModified": "2024-12-16T19:52:18.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "Aryan's Journal",
+          "url": "http://localhost:1313/",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "http:\/\/localhost:1313\/",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "http://localhost:1313/",
+      "url" : "http:\/\/localhost:1313\/posts\/posts\/prepared-statements-in-sql\/",
+      "wordCount" : "794",
+      "genre" : [ ],
+      "keywords" : [ ]
+  }
+  </script>
+  
+  
+  </head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="http://localhost:1313/">
+    <b>Aryan&#39;s Journal</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
+  
+  
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">Prepared Statements in Sql</h2>
+      <p><img
+  src="https://cdn-images-1.medium.com/max/2000/1*tmEFJ0LreB8wabdi67XY-Q.jpeg"
+  alt=""
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
+<p><strong>Prepared statement</strong>s are a common thing sql world. It has many benefits like it can execute the same (or similar) SQL statements repeatedly with high efficiency. It can also prevent one of the biggest security vulnerabilities, <strong>SQL injection</strong>.</p>
+<p>Compared to executing the query directly, there are primarily 3 advantages. Taking these points from w3schools,</p>
+<ol>
+<li>
+<p>Prepared statements reduce parsing time as the preparation on the query is done only once (although the statement is executed multiple times).</p>
+</li>
+<li>
+<p>Bound parameters minimize bandwidth to the server as you need send only the parameters each time, and not the whole query. At a later time, the application binds the values to the parameters, and the database executes the statement. The application may execute the statement as many times as it wants with different values.</p>
+</li>
+<li>
+<p>Prepared statements are very useful against SQL injections, because parameter values, which are transmitted later using a different protocol, need not be correctly escaped. If the original statement template is not derived from external input, SQL injection cannot occur.</p>
+</li>
+</ol>
+<h3 id="sql-injections">SQL Injections</h3>
+<p>During an SQL injection attack, the attacker tries to bind malicious sql code with the input parameter. In earlier days, we saw http queries like <code>user?id=1</code>, the id would be an input for the <code>id</code> of the users table. Behind the scene, the backend code is doing making some query using that input.</p>
+<p>Imagine we want to just read the user data from database where the id is $id (from query param). Our sql query would translate to something like this</p>
+<pre><code>SELECT (coulmns…) FROM users WHERE id = 1;
+</code></pre>
+<p>But what if the the attacker used the following instead of the id</p>
+<pre><code>user?id=1;DROP TABLE users;
+</code></pre>
+<p>As HTTP requests are parsed as strings (primarily), though we want id to be numeric, without proper sanitization the query would be</p>
+<pre><code>SELECT (coulmns…) FROM users WHERE id = 1; DROP TABLE users;
+</code></pre>
+<p>And given that there is sufficient permissions, this query would execute and drop the users table; A permanent mutation.</p>
+<h3 id="prepared-statements">Prepared Statements</h3>
+<p>This can be prevented by using <code>prepared statement</code>s. The root cause of that problem was not separating the sql code and input data. And <strong>the query and the data are sent to the database server separately</strong>.</p>
+<p>Using prepared statements, we’ll have something like</p>
+<pre><code>SELECT (columns…) FROM users where id=?&quot;
+</code></pre>
+<p>and data would be <code>**1**</code>;</p>
+<p>As our SQL query is <strong>a valid program as of itself</strong>, if we are directly making a query, we are dynamically building the query aka <em>program</em> in the runtime and sending it to the sql server, but using prepared statements, we first send the query <code>*SELECT (columns…) FROM users where id=?”*</code> first. And thats our program.</p>
+<p>Now, this program needs 1 (<em>id=?</em>) parameter in this example. Now we send the second piece, our data is <em>$data=1</em>;</p>
+<p>In this approach, our core SQL program (the query) can not be altered, the second request is only feeding the data itself.</p>
+<h3 id="command-vs-data">Command vs Data</h3>
+<p>Or <em>to execute or not to</em>. So what happens if we still use the same input <code>?id=1;DROP TABLE users;</code> ? Well, the input is not parsed, neither executed. Imagine having an executable but not executing it.</p>
+<p>Lets take a look at the following code,</p>
+<pre><code>$data = &quot;1; DROP TABLE users;&quot;
+$db-&gt;prepare(&quot;SELECT (columns…) FROM users WHERE id=?&quot;);
+ 
+$db-&gt;execute($data);
+</code></pre>
+<p>Shouldn’t this also translate to the same query? Well, the answer is <strong>no</strong>. AS mentioned, the query is a command that is executed, the data is not. For our instance, the data <code>*1; DROP Table users*</code> would fail to find a valid result.</p>
+<p>Here are some scenarios,</p>
+<ul>
+<li>
+<p><strong>If we have proper constraints and imagine the <code>id</code> column is <code>numeric</code> (eg int)</strong> the query should not return any results because <code>*1;DROP TABLE users;*</code> is not a numeric value and not compareable.</p>
+</li>
+<li>
+<p><strong>If we don’t have proper constraints and <code>id</code> is not <code>numeric</code> either. Say its a <code>text</code> field</strong> well, its used as value and the query translate to something like <code>*SELECT (columns…) FROM users WHERE id=”1; DROP TABLE users”;*</code>. The <code>*1; DROP TABLE users”;*</code> portion is the data. In direct queries and sql injections, this would translate to <code>*1*</code> being the data and the later part would be a query, acting as data but also being executed, causing the injection.</p>
+</li>
+<li>
+<p><strong>If its a write query</strong> in this scenario, given its numeric, it’ll cause an error because that payload is not a numeric value, and if it’s a text field, it will be inserted in the field. In summary, it will behave according to the constraints but <strong>WILL NOT EXECUTE</strong>.</p>
+</li>
+</ul>
+<p>But either way, whether we get the results or not (with invalid inputs), and maybe the input was not sanitized, but not getting any results are not an vulnerability.</p>
+<p>Simple, yet amazing, is it not?</p>
+<p>Feel free to point out any mistakes I’ve made.</p>
+
+      
+      <div class="post-date">
+        <span class="g time">December 16, 2024 </span> &#8729;
+         
+      </div>
+      
+    </section>
+    
+    
+    
+  </div>
+</main>
+</body>
+</html>

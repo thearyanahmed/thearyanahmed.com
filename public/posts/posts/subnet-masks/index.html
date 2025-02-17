@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - http://localhost:1313/">
+    <title>Subnet Masks | Aryan&#39;s Journal</title>
+    <meta name="description" content="">
+    <meta property="og:url" content="http://localhost:1313/posts/posts/subnet-masks/">
+  <meta property="og:site_name" content="Aryan&#39;s Journal">
+  <meta property="og:title" content="Subnet Masks">
+  <meta property="og:description" content="It’s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.
+subnet mask is a fundamental concept in computer networking that is used to divide an IP address into two parts: the network address and the host address. It’s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-16T19:53:11+01:00">
+    <meta property="article:modified_time" content="2024-12-16T19:53:11+01:00">
+
+    
+  <meta itemprop="name" content="Subnet Masks">
+  <meta itemprop="description" content="It’s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.
+subnet mask is a fundamental concept in computer networking that is used to divide an IP address into two parts: the network address and the host address. It’s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.">
+  <meta itemprop="datePublished" content="2024-12-16T19:53:11+01:00">
+  <meta itemprop="dateModified" content="2024-12-16T19:53:11+01:00">
+  <meta itemprop="wordCount" content="696">
+    
+    <link rel="canonical" href="http://localhost:1313/posts/posts/subnet-masks/">
+    <link rel="icon" href="http://localhost:1313//assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="Aryan&#39;s Journal" href="http://localhost:1313//atom.xml" />
+    <link rel="alternate" type="application/json" title="Aryan&#39;s Journal" href="http://localhost:1313//feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque">
+    
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 bricolage grotesque,-apple-system,BlinkMacSystemFont,segoe ui,Helvetica,Arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#fffdfa;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ddd;text-align:left;padding:8px}th{background-color:#f2f2f2} </style>
+  
+    
+  
+  
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "Subnet Masks",
+      "headline": "Subnet Masks",
+      "alternativeHeadline": "",
+      "description": "\u003cp\u003eIt’s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.\u003c\/p\u003e\n\u003ch2 id=\u0022subnet-mask\u0022\u003esubnet mask\u003c\/h2\u003e\n\u003cp\u003eis a fundamental concept in computer networking that is used to divide an IP address into two parts: the network address and the host address. It\u0026rsquo;s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.\u003c\/p\u003e",
+      "inLanguage": "en-gb",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http:\/\/localhost:1313\/posts\/posts\/subnet-masks\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "Aryan\u0027s Journal",
+      "copyrightYear" : "2024",
+      "dateCreated": "2024-12-16T19:53:11.00Z",
+      "datePublished": "2024-12-16T19:53:11.00Z",
+      "dateModified": "2024-12-16T19:53:11.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "Aryan's Journal",
+          "url": "http://localhost:1313/",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "http:\/\/localhost:1313\/",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "http://localhost:1313/",
+      "url" : "http:\/\/localhost:1313\/posts\/posts\/subnet-masks\/",
+      "wordCount" : "696",
+      "genre" : [ ],
+      "keywords" : [ ]
+  }
+  </script>
+  
+  
+  </head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="http://localhost:1313/">
+    <b>Aryan&#39;s Journal</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
+  
+  
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">Subnet Masks</h2>
+      <p>It’s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.</p>
+<h2 id="subnet-mask">subnet mask</h2>
+<p>is a fundamental concept in computer networking that is used to divide an IP address into two parts: the network address and the host address. It&rsquo;s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.</p>
+<p>IP addresses are typically represented in dotted-decimal notation, such as &ldquo;192.168.1.1&rdquo;. A subnet mask is also represented in a similar format, consisting of four sets of numbers separated by dots, like &ldquo;255.255.255.0&rdquo;.</p>
+<p>Here&rsquo;s how a subnet mask works:</p>
+<ol>
+<li>
+<p><strong>Binary Representation:</strong> IP addresses and subnet masks are actually represented in binary form. Each octet (the numbers between the dots) is converted into an 8-digit binary number. For example, the decimal value &ldquo;192&rdquo; is represented as &ldquo;11000000&rdquo; in binary.</p>
+</li>
+<li>
+<p><strong>Network and Host Portions:</strong> The subnet mask consists of a series of consecutive 1s followed by a series of consecutive 0s. The 1s represent the network portion of the IP address, and the 0s represent the host portion.</p>
+</li>
+<li>
+<p><strong>Logical AND Operation:</strong> When you perform a logical AND operation between an IP address and its subnet mask, you effectively &ldquo;mask off&rdquo; the host portion of the IP address, leaving only the network portion. This helps devices determine if a destination IP address is on the same local network or needs to be routed through a gateway to reach a different network.</p>
+</li>
+</ol>
+<p><strong>For example:</strong> if you have an IP address like &ldquo;192.168.1.10&rdquo; and a subnet mask of &ldquo;255.255.255.0&rdquo;, you can perform the logical AND operation on the binary representations of these values. The result would be &ldquo;192.168.1.0&rdquo;, which represents the network portion of the IP address.</p>
+<p>Subnet masks are crucial for determining network boundaries, routing decisions, and efficient allocation of IP addresses. Different subnet masks can create smaller or larger subnets, allowing for efficient utilization of IP addresses based on the size of the network.</p>
+<p>Let&rsquo;s dive deeper into the example and explore how the logical AND operation works with the IP address &ldquo;192.168.1.10&rdquo; and the subnet mask &ldquo;255.255.255.0&rdquo;.</p>
+<ol>
+<li>
+<p><strong>IP Address and Subnet Mask in Binary:</strong></p>
+<p>The IP address &ldquo;192.168.1.10&rdquo; and the subnet mask &ldquo;255.255.255.0&rdquo; can be represented in binary form as follows:</p>
+<p>IP address: 11000000.10101000.00000001.00001010
+Subnet mask: 11111111.11111111.11111111.00000000</p>
+</li>
+<li>
+<p><strong>Performing Logical AND Operation:</strong></p>
+<p>When you perform a logical AND operation between the binary representations of the IP address and the subnet mask, you compare each bit position and apply the following rule:</p>
+<ul>
+<li>If both bits are 1, the result is 1.</li>
+<li>If either bit is 0, the result is 0.</li>
+</ul>
+<p>Let&rsquo;s apply the logical AND operation to each bit position:</p>
+<pre tabindex="0"><code>IP address:   11000000.10101000.00000001.00001010
+Subnet mask:  11111111.11111111.11111111.00000000
+----------------------------------------------
+Result:        11000000.10101000.00000001.00000000
+</code></pre></li>
+<li>
+<p><strong>Interpreting the Result:</strong></p>
+<p>The result of the logical AND operation is &ldquo;11000000.10101000.00000001.00000000&rdquo;. This binary value can be converted back to decimal, resulting in &ldquo;192.168.1.0&rdquo;.</p>
+<p>The &ldquo;192.168.1.0&rdquo; address represents the network address portion of the IP address &ldquo;192.168.1.10&rdquo; within the context of the subnet defined by the &ldquo;255.255.255.0&rdquo; subnet mask. This means that all devices with IP addresses that share the same network address of &ldquo;192.168.1.0&rdquo; and belong to the same subnet will be able to communicate directly with each other without the need for routing through a gateway.</p>
+</li>
+<li>
+<p><strong>Host Address:</strong></p>
+<p>The remaining portion of the IP address (&ldquo;10&rdquo; in this case) represents the host address within the subnet. Devices with different host addresses can still communicate within the same subnet, but devices with different network addresses (belonging to different subnets) will require routing to communicate.</p>
+</li>
+</ol>
+<p>In essence, the logical AND operation with the subnet mask allows networking devices to quickly determine the network address of an IP address and make decisions about whether communication can occur directly on the local network or if routing is needed to reach different networks.</p>
+<p>In summary, a subnet mask is a key component in IP addressing and subnetting, helping devices determine which part of an IP address identifies the network and which part identifies individual devices within that network.</p>
+
+      
+      <div class="post-date">
+        <span class="g time">December 16, 2024 </span> &#8729;
+         
+      </div>
+      
+    </section>
+    
+    
+    
+  </div>
+</main>
+</body>
+</html>

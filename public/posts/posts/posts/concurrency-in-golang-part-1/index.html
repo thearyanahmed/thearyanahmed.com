@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - http://localhost:1313/">
+    <title>Concurrency in Golang Part 1 | Aryan&#39;s Journal</title>
+    <meta name="description" content="">
+    <meta property="og:url" content="http://localhost:1313/posts/posts/posts/concurrency-in-golang-part-1/">
+  <meta property="og:site_name" content="Aryan&#39;s Journal">
+  <meta property="og:title" content="Concurrency in Golang Part 1">
+  <meta property="og:description" content="This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.
+What is Concurrency? Concurrency refers to the simultaneous and autonomous execution of multiple processes. This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-16T19:47:48+01:00">
+    <meta property="article:modified_time" content="2024-12-16T19:47:48+01:00">
+
+    
+  <meta itemprop="name" content="Concurrency in Golang Part 1">
+  <meta itemprop="description" content="This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.
+What is Concurrency? Concurrency refers to the simultaneous and autonomous execution of multiple processes. This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.">
+  <meta itemprop="datePublished" content="2024-12-16T19:47:48+01:00">
+  <meta itemprop="dateModified" content="2024-12-16T19:47:48+01:00">
+  <meta itemprop="wordCount" content="1075">
+    
+    <link rel="canonical" href="http://localhost:1313/posts/posts/posts/concurrency-in-golang-part-1/">
+    <link rel="icon" href="http://localhost:1313//assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="Aryan&#39;s Journal" href="http://localhost:1313//atom.xml" />
+    <link rel="alternate" type="application/json" title="Aryan&#39;s Journal" href="http://localhost:1313//feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bricolage+Grotesque">
+    
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 bricolage grotesque,-apple-system,BlinkMacSystemFont,segoe ui,Helvetica,Arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#fffdfa;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ddd;text-align:left;padding:8px}th{background-color:#f2f2f2} </style>
+  
+    
+  
+  
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "Concurrency in Golang Part 1",
+      "headline": "Concurrency in Golang Part 1",
+      "alternativeHeadline": "",
+      "description": "\u003cp\u003eThis approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.\u003c\/p\u003e\n\u003ch2 id=\u0022what-is-concurrency\u0022\u003eWhat is Concurrency?\u003c\/h2\u003e\n\u003cp\u003eConcurrency refers to the simultaneous and autonomous execution of multiple processes. This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.\u003c\/p\u003e",
+      "inLanguage": "en-gb",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http:\/\/localhost:1313\/posts\/posts\/posts\/concurrency-in-golang-part-1\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "Aryan\u0027s Journal",
+      "copyrightYear" : "2024",
+      "dateCreated": "2024-12-16T19:47:48.00Z",
+      "datePublished": "2024-12-16T19:47:48.00Z",
+      "dateModified": "2024-12-16T19:47:48.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "Aryan's Journal",
+          "url": "http://localhost:1313/",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "http:\/\/localhost:1313\/",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "http://localhost:1313/",
+      "url" : "http:\/\/localhost:1313\/posts\/posts\/posts\/concurrency-in-golang-part-1\/",
+      "wordCount" : "1075",
+      "genre" : [ ],
+      "keywords" : [ ]
+  }
+  </script>
+  
+  
+  </head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="http://localhost:1313/">
+    <b>Aryan&#39;s Journal</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
+  
+  
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">Concurrency in Golang Part 1</h2>
+      <p>This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.</p>
+<h2 id="what-is-concurrency">What is Concurrency?</h2>
+<p>Concurrency refers to the simultaneous and autonomous execution of multiple processes. This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.</p>
+<p>In the context of single-core hardware, concurrency can be attained through context switching. Conversely, in multicore hardware, parallelism comes into play to achieve concurrency.</p>
+<blockquote>
+<p>“Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once.” — Rob Pike</p></blockquote>
+<p><a href="https://www.youtube.com/watch?v=oV9rvDllKEg&amp;ab_channel=gnbitcom">https://www.youtube.com/watch?v=oV9rvDllKEg&amp;ab_channel=gnbitcom</a></p>
+<p>Before going into patterns, I would like to talk about a few concepts, relevant for writing concurrent code.</p>
+<h2 id="deadlock">Deadlock</h2>
+<p>A deadlock is a situation when a task is waiting for something that will never happen. For freshers, a job needs experience, and to have experience you need a job is sort of like a deadlock situation.<br>
+For simplicity,</p>
+<blockquote>
+<p>In a deadlock, two processes wait for each other.</p></blockquote>
+<p>In terms of go, both of the following will result in a deadlock. The <code>make(chan int)</code> creates an unbuffered channel.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">channel</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">channel</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// or </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//  channel &lt;- 1</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="livelock">Livelock</h2>
+<p>A livelock situation is a scenario where the processes are trying to resolve the issue within themselves but, they do not succeed. Imagine in an aeroplane isle, only one person can walk. If two people wants to go to the opposite end, they&rsquo;ll be blocked by each other in the middle. In a livelock situation, they&rsquo;d go back or try in a different way to cross the isle together, individually, but at the same time (timeframe), but will fail cause the isle only allows one person at a time.</p>
+<p>Though they are trying to solve it, they&rsquo;ll not be able to (unless one of them goes back to the starting point and waits for the other person two cross).</p>
+<h2 id="race-condition">Race condition</h2>
+<p>Race condition is a scenario where two or more threads have access to the same data and wants to update it simultaneously. But due to the lack of order, the changes are committed.</p>
+<p>Take the following code for example, we have a simple for loop that calls an anonymous function to increment the value of <code>x</code> by 1. We call it 5 times. Though in synchronous code, the final result will be 5, in this code, the value will be <code>0</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Initial value of x is &#34;</span>, <span style="color:#a6e22e">x</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">5</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() { <span style="color:#75715e">// spawn goroutines here</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">x</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>	}()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Final value of x is &#34;</span>, <span style="color:#a6e22e">x</span>)
+</span></span></code></pre></div><p>The reason for this is when the nested function reads the value of <code>x</code> it is still <code>0</code>, and it increses by 1, but by these time, all other spwaned goroutines have read the same value and increased by 1.</p>
+<p><strong>Sidenote</strong>  Why <code>0</code> then? Why not <code>1</code> ? <code>goroutines</code> does not wait for this operation to finish and therefore, by the time the final <code>println</code> is called, the value is still 0.</p>
+<h2 id="starvation">Starvation</h2>
+<p>One of the ways to solve this race condition would be to use a mutex lock. But imagine a scenario, we have different tasks with different priorities, and what if a task with higher prirority keeps executing (and keeps the CPU busy)? Or the scheduler schedules more high priority tasks and pushes them in the middle?</p>
+<p>In this scenario the lower priority task/s will never get executed or will execute after a long delay.</p>
+<h2 id="synchronization-sync">Synchronization (sync)</h2>
+<p>It is essential that we sync our tasks when writing concurrent programs. There are a few concepts in these scenarios that we can follow. Golang also has libraries for them. I&rsquo;ll talk about <strong>mutex</strong>, <strong>atomic</strong> and <strong>waitgroups</strong>.</p>
+<h2 id="mutex">Mutex</h2>
+<blockquote>
+<p>A mutex is a synchronization primitive used in concurrent programming to control access to shared resources, such as variables, data structures, or code sections, in a way that ensures only one thread or process can access the resource at a time.</p></blockquote>
+<p>Mutex is short for <code>mutual exclusion</code>. A mutex provides two functionalities, acquiring and releasing (a) lock. When we are working with shared data, before starting to work with it, we put a <code>lock</code> in it, so other threads can not update the value until we release the lock. After our operation is done, we <code>release</code> the lock.</p>
+<h2 id="atomic">Atomic</h2>
+<p>The <code>sync/atomic</code> package provides low-level atomic memory operations for basic types, allowing you to perform atomic operations on variables shared by multiple <code>goroutines</code> without the need for explicit locking. This is crucial for writing safe and efficient concurrent programs.</p>
+<h2 id="waitgroup">WaitGroup</h2>
+<p>The <code>sync.WaitGroup</code> type in Go is a synchronization primitive used to wait for a collection of goroutines to finish their execution. It provides a way to block the execution of a program until a specified number of goroutines complete their work. This is particularly useful when you have a set of concurrent tasks and you need to ensure that all of them have finished before proceeding with the rest of the program.</p>
+<h2 id="channels">Channels</h2>
+<p>A channel is like a pathway that lets different functions talk to each other while they&rsquo;re running at the same time. You can send and get data through it, like numbers or words. When you&rsquo;ve got lots of tasks happening all together, channels make it easy for them to share information. Think of them as the connections between these tasks. Channels are kind of like pointers, so you can easily give them to tasks and use them to pass data back and forth.</p>
+<p>It is one of the most important features of golang. Go has two types of channels. Buffered and unbuffered. Buffered channels are simply a channel with some capacities. It can hold values. While you can think of channels being pipes, buffered channels are pipes with buckets (to store something).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// unbuffered channel</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">unbufferedChannel</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">unbufferedChannel</span> = make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">unbufferedChannel</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>}()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;unbuffered channel &#34;</span>, <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">unbufferedChannel</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// buffered channel</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bufferedChannel</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bufferedChannel</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bufferedChannel</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// bufferedChannel &lt;- 3 // uncommeting this line will block cause the capaticity is 2 </span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;first channel &#34;</span>, <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">bufferedChannel</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;first channel&#34;</span>, <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">bufferedChannel</span>)
+</span></span></code></pre></div>
+      
+      <div class="post-date">
+        <span class="g time">December 16, 2024 </span> &#8729;
+         
+      </div>
+      
+    </section>
+    
+    
+    
+  </div>
+</main>
+</body>
+</html>
