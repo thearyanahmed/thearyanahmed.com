@@ -1,6 +1,6 @@
 +++
 title = 'Rust Memory Ownership and Borrowing'
-date = 2024-12-16T19:43:22+01:00
+date = 2024-06-27T19:43:22+01:00
 draft = false
 +++
 
@@ -35,10 +35,10 @@ When a function is called, that is when we actually put our sheet of paper on to
 ```rust
 fn main() {
   println!("Hello, World");
- 
+
   let x = 10;
   println("{}", x);
- 
+
   print_another_variable();
 }
 
@@ -90,7 +90,7 @@ The heap takes say memory address 0xAB0001 (lets assume), and starts putting our
 Our hello world string ends at 0xAB0012. But what do we store in our stack? Our stack holds the following values,
 
 ptr = 0xAB0001 # a pointer to our first memory address
-cap = 12 # cap stands for capacity 
+cap = 12 # cap stands for capacity
 len = 12 # len stands for length
 If we update the string to Hello, our capacity still remain 12, but our length will be 5.
 
@@ -202,16 +202,16 @@ fn main() {
 
  // added `mut` here
  let mut a = String::from("Hello");
-  
+
  a = print_something(a);
- 
+
  println!("a in main => {}", a);
 
 }
 // Notice the " -> String", it means it is gonna return a string
 fn print_something(a : String) -> String {
  println!("inside the function => {}", a);
- 
+
  a // here we are returning a string value
 }
 ```
@@ -228,7 +228,7 @@ fn main() {
 
   // we are passing a reference, denoted by '&'
  print_something(&a);
- 
+
  println!("a in main => {}", a);
 }
 

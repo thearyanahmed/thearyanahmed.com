@@ -1,6 +1,6 @@
 +++
 title = 'Differences Between Ssl and Tls'
-date = 2024-12-16T19:48:19+01:00
+date = 2024-10-25T19:48:19+01:00
 draft = false
 +++
 

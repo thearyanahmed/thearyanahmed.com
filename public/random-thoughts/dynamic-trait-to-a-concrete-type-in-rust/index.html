@@ -7,26 +7,26 @@
     <meta name="author" content="Liste - http://localhost:1313/">
     <title>Dynamic Trait to a Concrete Type in Rust | Aryan&#39;s Journal</title>
     <meta name="description" content="Random bits and bytes from Aryan&#39;s Journey">
-    <meta property="og:url" content="http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/">
+    <meta property="og:url" content="http://localhost:1313/random-thoughts/dynamic-trait-to-a-concrete-type-in-rust/">
   <meta property="og:site_name" content="Aryan&#39;s Journal">
   <meta property="og:title" content="Dynamic Trait to a Concrete Type in Rust">
   <meta property="og:description" content="As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.
 Every value in Rust is of a certain data type. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.">
   <meta property="og:locale" content="en_gb">
   <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-10-17T19:48:45+01:00">
-    <meta property="article:modified_time" content="2024-10-17T19:48:45+01:00">
+    <meta property="article:section" content="random-thoughts">
+    <meta property="article:published_time" content="2024-12-16T19:48:45+01:00">
+    <meta property="article:modified_time" content="2024-12-16T19:48:45+01:00">
 
     
   <meta itemprop="name" content="Dynamic Trait to a Concrete Type in Rust">
   <meta itemprop="description" content="As rust does not support interface , sometimes it can be difficult to cast a dynamic typed variable to a concrete type. Lets take a look how we can achieve similar functionality.
 Every value in Rust is of a certain data type. Even null and errors are handled differently. In fact rust doesn’t have null. Null values are handled via the Option type and errors are handled via Result type. Every struct we define has specific values as well.">
-  <meta itemprop="datePublished" content="2024-10-17T19:48:45+01:00">
-  <meta itemprop="dateModified" content="2024-10-17T19:48:45+01:00">
+  <meta itemprop="datePublished" content="2024-12-16T19:48:45+01:00">
+  <meta itemprop="dateModified" content="2024-12-16T19:48:45+01:00">
   <meta itemprop="wordCount" content="685">
     
-    <link rel="canonical" href="http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/">
+    <link rel="canonical" href="http://localhost:1313/random-thoughts/dynamic-trait-to-a-concrete-type-in-rust/">
     <link rel="icon" href="http://localhost:1313//assets/favicon.ico">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
@@ -45,7 +45,7 @@ Every value in Rust is of a certain data type. Even null and errors are handled 
   {
       "@context": "http://schema.org",
       "@type": "BlogPosting",
-      "articleSection": "posts",
+      "articleSection": "random-thoughts",
       "name": "Dynamic Trait to a Concrete Type in Rust",
       "headline": "Dynamic Trait to a Concrete Type in Rust",
       "alternativeHeadline": "",
@@ -54,7 +54,7 @@ Every value in Rust is of a certain data type. Even null and errors are handled 
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "http:\/\/localhost:1313\/posts\/dynamic-trait-to-a-concrete-type-in-rust\/"
+          "@id": "http:\/\/localhost:1313\/random-thoughts\/dynamic-trait-to-a-concrete-type-in-rust\/"
       },
       "author" : {
           "@type": "Person",
@@ -70,9 +70,9 @@ Every value in Rust is of a certain data type. Even null and errors are handled 
       },
       "copyrightHolder" : "Aryan\u0027s Journal",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-10-17T19:48:45.00Z",
-      "datePublished": "2024-10-17T19:48:45.00Z",
-      "dateModified": "2024-10-17T19:48:45.00Z",
+      "dateCreated": "2024-12-16T19:48:45.00Z",
+      "datePublished": "2024-12-16T19:48:45.00Z",
+      "dateModified": "2024-12-16T19:48:45.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "Aryan's Journal",
@@ -85,7 +85,7 @@ Every value in Rust is of a certain data type. Even null and errors are handled 
           }
       },
       "image": "http://localhost:1313/assets/favicon.ico",
-      "url" : "http:\/\/localhost:1313\/posts\/dynamic-trait-to-a-concrete-type-in-rust\/",
+      "url" : "http:\/\/localhost:1313\/random-thoughts\/dynamic-trait-to-a-concrete-type-in-rust\/",
       "wordCount" : "685",
       "genre" : [ ],
       "keywords" : [ ]
@@ -110,7 +110,7 @@ Every value in Rust is of a certain data type. Even null and errors are handled 
   
   
   <li class="">
-    <a href="/posts/"><span>posts</span></a>
+    <a href="/random-thoughts/"><span>random thoughts</span></a>
     
   </li>
 </ul>
@@ -156,7 +156,7 @@ struct Storage {
   // other props
 }
 
-let storage = Storage::from(LocalFileSystemAdapterConfig | S3AdapterConfig);
+let storage = Storage::from(LocalFileSystemAdapterConfig | S3AdapterConfig); 
 
 // and based on the given config
 storage.disk = LocalFileSystem | S3
@@ -208,7 +208,7 @@ impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
 }
 </code></pre>
 <p>We also need to change our method’s signature from</p>
-<pre><code>pub fn new&lt;T : dyn StorageAdapterConfigTrait&gt;(config: T)
+<pre><code>pub fn new&lt;T : dyn StorageAdapterConfigTrait&gt;(config: T) 
 </code></pre>
 <p>to</p>
 <pre><code>pub fn new(config: &amp;dyn Any)
@@ -220,7 +220,7 @@ impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
             .downcast_ref::&lt;LocalFileSystemAdapterConfig&gt;()
             .expect(&quot;failed to downcast&quot;);
 
-// the syntax is
+// the syntax is 
 // .downcast_ref::&lt;$CONCRETE_TYPE&gt;().expect(&quot;msg&quot;);
 </code></pre>
 <p>The full code,</p>
@@ -238,7 +238,7 @@ impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
             base_dir: base_dir.to_string(),
         }
     }
-
+  
   // ...
 }
 </code></pre>
@@ -257,26 +257,11 @@ impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
 
       
       <div class="post-date">
-        <span class="g time">October 17, 2024 </span> &#8729;
+        <span class="g time">December 16, 2024 </span> &#8729;
          
       </div>
       
     </section>
-    
-    
-    <div id="comments">
-      
-<script src="https://utteranc.es/client.js"
-    repo=canhtran/maverick
-    issue-term="pathname"
-    theme=github-light
-    crossorigin="anonymous"
-    async>
-</script>
-
-
-    </div>
-    
     
   </div>
 </main>

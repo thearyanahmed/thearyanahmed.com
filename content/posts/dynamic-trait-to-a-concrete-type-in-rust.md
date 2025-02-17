@@ -1,6 +1,6 @@
 +++
 title = 'Dynamic Trait to a Concrete Type in Rust'
-date = 2024-12-16T19:48:45+01:00
+date = 2024-10-17T19:48:45+01:00
 draft = false
 +++
 
@@ -15,9 +15,9 @@ What happens we need something dynamic of different types?
 I’m trying to build a storage library, that supports multiple drivers. Sort of like [laravel’s storage](https://laravel.com/docs/9.x/filesystem) class. In my design, we’d have something like
 
     Storage::put('file-01.txt', content);
-    
+
     Storage::disk('s3')->put('file-02.png', content);
-    
+
     Storage::download('file-03.docs');
 
 As it’ll have different types of disks, which will work as adapters to our storage.
@@ -37,7 +37,7 @@ For better understanding, I’m paining two config structs.
     pub struct LocalFileSystemAdapterConfig {
       pub root_dir: String,
     }
-    
+
     pub struct S3AdapterConfig {
       pub public_key: String,
       pub secret_key: String,
@@ -54,9 +54,9 @@ And I need something like
       disk: StorageAdapter,
       // other props
     }
-    
-    let storage = Storage::from(LocalFileSystemAdapterConfig | S3AdapterConfig); 
-    
+
+    let storage = Storage::from(LocalFileSystemAdapterConfig | S3AdapterConfig);
+
     // and based on the given config
     storage.disk = LocalFileSystem | S3
 
@@ -65,7 +65,7 @@ Defining a function that takes a dynamic parameter and casts it down to a specif
     struct LocalAdapterConfig {
       base_dir: String,
     }
-    
+
     impl LocalAdapter {
       pub fn new<T : dyn StorageAdapterConfigTrait>(config: T) -> LocalAdapter {
         let local_config = config as LocalAdapterConfig;
@@ -88,17 +88,17 @@ We want to use the Any trait, it uses reflection to allow dynamic typing of any 
 
 Our initial code is as follows
 
-    
+
     use std::any::Any;
-    
+
     pub struct LocalFileSystemAdapterConfig {
         pub base_directory: String,
     }
-    
+
     pub struct LocalFileSystemAdapter {
       pub base_dir: String, // just for demo purpose
     }
-    
+
     // the trait config that every storage adapter's config will implement
     pub trait StorageAdapterConfig {
         fn as_any(&self) -> &dyn Any;
@@ -106,9 +106,9 @@ Our initial code is as follows
 
 We need the as_any method to be implemented for concrete struct/s where we want to allow *downcasting*. Therefore,
 
-    
+
     use std::any::Any;
-    
+
     impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
         fn as_any(&self) -> &dyn Any {
             self
@@ -117,42 +117,42 @@ We need the as_any method to be implemented for concrete struct/s where we want 
 
 We also need to change our method’s signature from
 
-    pub fn new<T : dyn StorageAdapterConfigTrait>(config: T) 
+    pub fn new<T : dyn StorageAdapterConfigTrait>(config: T)
 
 to
 
     pub fn new(config: &dyn Any)
-    
+
     // make sure to import std::any::Any;
 
 And finally, to downcast a variable of type dyn Any to our concrete LocalFileSystemAdapterConfig ,
 
-    
+
     let cfg : &LocalFileSystemAdapterConfig = config
                 .downcast_ref::<LocalFileSystemAdapterConfig>()
                 .expect("failed to downcast");
-    
-    // the syntax is 
+
+    // the syntax is
     // .downcast_ref::<$CONCRETE_TYPE>().expect("msg");
 
 The full code,
 
-    
+
     impl LocalFileSystemAdapter {
-    
+
         pub fn new(config: &dyn Any) -> LocalFileSystemAdapter {
-    
+
             let cfg : &LocalFileSystemAdapterConfig = config
                 .downcast_ref::<LocalFileSystemAdapterConfig>()
                 .expect("failed to downcast");
-    
+
             let base_dir = &cfg.base_directory;
-    
+
             LocalFileSystemAdapter {
                 base_dir: base_dir.to_string(),
             }
         }
-      
+
       // ...
     }
 

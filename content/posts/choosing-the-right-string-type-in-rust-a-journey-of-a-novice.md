@@ -1,6 +1,6 @@
 +++
 title = 'Choosing the Right String Type in Rust a Journey of a Novice'
-date = 2024-12-16T19:47:06+01:00
+date = 2024-09-01T19:47:06+01:00
 draft = false
 +++
 

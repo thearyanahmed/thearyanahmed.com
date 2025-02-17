@@ -1,7 +1,7 @@
 +++
 title = 'Subnet Masks'
 date = 2024-12-16T19:53:11+01:00
-draft = false
+draft = true
 +++
 
 It’s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.

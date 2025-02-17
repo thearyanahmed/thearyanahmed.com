@@ -1,7 +1,7 @@
 +++
 title = 'Concurrency in Golang Part 1'
 date = 2024-12-16T19:47:48+01:00
-draft = false
+draft = true
 +++
 
 This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.
@@ -19,12 +19,12 @@ https://www.youtube.com/watch?v=oV9rvDllKEg&ab_channel=gnbitcom
 Before going into patterns, I would like to talk about a few concepts, relevant for writing concurrent code.
 
 ## Deadlock
-A deadlock is a situation when a task is waiting for something that will never happen. For freshers, a job needs experience, and to have experience you need a job is sort of like a deadlock situation.  
+A deadlock is a situation when a task is waiting for something that will never happen. For freshers, a job needs experience, and to have experience you need a job is sort of like a deadlock situation.
 For simplicity,
 
 > In a deadlock, two processes wait for each other.
 
-In terms of go, both of the following will result in a deadlock. The `make(chan int)` creates an unbuffered channel. 
+In terms of go, both of the following will result in a deadlock. The `make(chan int)` creates an unbuffered channel.
 
 ```go
 package main
@@ -32,20 +32,20 @@ package main
 func main() {
 	channel := make(chan int)
 	<-channel
-    
-    // or 
+
+    // or
     //  channel <- 1
 }
 ```
 
 ## Livelock
-A livelock situation is a scenario where the processes are trying to resolve the issue within themselves but, they do not succeed. Imagine in an aeroplane isle, only one person can walk. If two people wants to go to the opposite end, they'll be blocked by each other in the middle. In a livelock situation, they'd go back or try in a different way to cross the isle together, individually, but at the same time (timeframe), but will fail cause the isle only allows one person at a time. 
+A livelock situation is a scenario where the processes are trying to resolve the issue within themselves but, they do not succeed. Imagine in an aeroplane isle, only one person can walk. If two people wants to go to the opposite end, they'll be blocked by each other in the middle. In a livelock situation, they'd go back or try in a different way to cross the isle together, individually, but at the same time (timeframe), but will fail cause the isle only allows one person at a time.
 
 Though they are trying to solve it, they'll not be able to (unless one of them goes back to the starting point and waits for the other person two cross).
 
 
 ## Race condition
-Race condition is a scenario where two or more threads have access to the same data and wants to update it simultaneously. But due to the lack of order, the changes are committed. 
+Race condition is a scenario where two or more threads have access to the same data and wants to update it simultaneously. But due to the lack of order, the changes are committed.
 
 Take the following code for example, we have a simple for loop that calls an anonymous function to increment the value of `x` by 1. We call it 5 times. Though in synchronous code, the final result will be 5, in this code, the value will be `0`.
 
@@ -62,7 +62,7 @@ for i := 0; i < 5; i++ {
 
 fmt.Println("Final value of x is ", x)
 ```
-The reason for this is when the nested function reads the value of `x` it is still `0`, and it increses by 1, but by these time, all other spwaned goroutines have read the same value and increased by 1. 
+The reason for this is when the nested function reads the value of `x` it is still `0`, and it increses by 1, but by these time, all other spwaned goroutines have read the same value and increased by 1.
 
 **Sidenote**  Why `0` then? Why not `1` ? `goroutines` does not wait for this operation to finish and therefore, by the time the final `println` is called, the value is still 0.
 
@@ -76,7 +76,7 @@ It is essential that we sync our tasks when writing concurrent programs. There a
 
 ## Mutex
 
-> A mutex is a synchronization primitive used in concurrent programming to control access to shared resources, such as variables, data structures, or code sections, in a way that ensures only one thread or process can access the resource at a time. 
+> A mutex is a synchronization primitive used in concurrent programming to control access to shared resources, such as variables, data structures, or code sections, in a way that ensures only one thread or process can access the resource at a time.
 
 Mutex is short for `mutual exclusion`. A mutex provides two functionalities, acquiring and releasing (a) lock. When we are working with shared data, before starting to work with it, we put a `lock` in it, so other threads can not update the value until we release the lock. After our operation is done, we `release` the lock.
 
@@ -107,7 +107,7 @@ fmt.Println("unbuffered channel ", <-unbufferedChannel)
 bufferedChannel := make(chan int, 2)
 bufferedChannel <- 1
 bufferedChannel <- 2
-// bufferedChannel <- 3 // uncommeting this line will block cause the capaticity is 2 
+// bufferedChannel <- 3 // uncommeting this line will block cause the capaticity is 2
 fmt.Println("first channel ", <-bufferedChannel)
 fmt.Println("first channel", <-bufferedChannel)
 ```

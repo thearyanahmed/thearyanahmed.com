@@ -1,6 +1,6 @@
 +++
 title = 'Building a Url Shortener With Rust and Redis'
-date = 2024-12-16T19:46:16+01:00
+date = 2024-08-09T19:46:16+01:00
 draft = false
 +++
 
@@ -279,7 +279,7 @@ let unique_string: String = rand::thread_rng()
         .map(char::from)
         .collect();
 ```
-        
+
 ## Quick Links
 - A video on using [alpha numeric ids for n characters by Tom Scott](https://www.youtube.com/watch?v=gocwRvLhDf8&t=1s&ab_channel=TomScott)
 - [Consistent hashing](https://en.wikipedia.org/wiki/Consistent_hashing)

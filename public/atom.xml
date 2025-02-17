@@ -7,193 +7,35 @@
     
     <language>en</language>
     <copyright>Copyright 2025, Calvin Tran</copyright>
-    <lastBuildDate>Mon, 16 Dec 2024 19:53:11 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 25 Oct 2024 19:48:19 +0100</lastBuildDate>
     <generator>Hugo - gohugo.io</generator>
     <docs>http://cyber.harvard.edu/rss/rss.html</docs>
     <atom:link href="http://localhost:1313//atom.xml" rel="self" type="application/atom+xml"/>
     
     
     <item>
-      <title>Subnet Masks</title>
-      <link>http://localhost:1313/posts/subnet-masks/</link>
-      <description>&lt;p&gt;It’s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.&lt;/p&gt;
-&lt;h2 id=&#34;subnet-mask&#34;&gt;subnet mask&lt;/h2&gt;
-&lt;p&gt;is a fundamental concept in computer networking that is used to divide an IP address into two parts: the network address and the host address. It&amp;rsquo;s an essential component of IP addressing and subnetting, allowing devices on a network to determine which portion of an IP address identifies the network itself and which portion identifies individual devices within that network.&lt;/p&gt;
-&lt;p&gt;IP addresses are typically represented in dotted-decimal notation, such as &amp;ldquo;192.168.1.1&amp;rdquo;. A subnet mask is also represented in a similar format, consisting of four sets of numbers separated by dots, like &amp;ldquo;255.255.255.0&amp;rdquo;.&lt;/p&gt;
-&lt;p&gt;Here&amp;rsquo;s how a subnet mask works:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Binary Representation:&lt;/strong&gt; IP addresses and subnet masks are actually represented in binary form. Each octet (the numbers between the dots) is converted into an 8-digit binary number. For example, the decimal value &amp;ldquo;192&amp;rdquo; is represented as &amp;ldquo;11000000&amp;rdquo; in binary.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Network and Host Portions:&lt;/strong&gt; The subnet mask consists of a series of consecutive 1s followed by a series of consecutive 0s. The 1s represent the network portion of the IP address, and the 0s represent the host portion.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Logical AND Operation:&lt;/strong&gt; When you perform a logical AND operation between an IP address and its subnet mask, you effectively &amp;ldquo;mask off&amp;rdquo; the host portion of the IP address, leaving only the network portion. This helps devices determine if a destination IP address is on the same local network or needs to be routed through a gateway to reach a different network.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;For example:&lt;/strong&gt; if you have an IP address like &amp;ldquo;192.168.1.10&amp;rdquo; and a subnet mask of &amp;ldquo;255.255.255.0&amp;rdquo;, you can perform the logical AND operation on the binary representations of these values. The result would be &amp;ldquo;192.168.1.0&amp;rdquo;, which represents the network portion of the IP address.&lt;/p&gt;
-&lt;p&gt;Subnet masks are crucial for determining network boundaries, routing decisions, and efficient allocation of IP addresses. Different subnet masks can create smaller or larger subnets, allowing for efficient utilization of IP addresses based on the size of the network.&lt;/p&gt;
-&lt;p&gt;Let&amp;rsquo;s dive deeper into the example and explore how the logical AND operation works with the IP address &amp;ldquo;192.168.1.10&amp;rdquo; and the subnet mask &amp;ldquo;255.255.255.0&amp;rdquo;.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;IP Address and Subnet Mask in Binary:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The IP address &amp;ldquo;192.168.1.10&amp;rdquo; and the subnet mask &amp;ldquo;255.255.255.0&amp;rdquo; can be represented in binary form as follows:&lt;/p&gt;
-&lt;p&gt;IP address: 11000000.10101000.00000001.00001010
-Subnet mask: 11111111.11111111.11111111.00000000&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Performing Logical AND Operation:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;When you perform a logical AND operation between the binary representations of the IP address and the subnet mask, you compare each bit position and apply the following rule:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;If both bits are 1, the result is 1.&lt;/li&gt;
-&lt;li&gt;If either bit is 0, the result is 0.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Let&amp;rsquo;s apply the logical AND operation to each bit position:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;IP address:   11000000.10101000.00000001.00001010
-Subnet mask:  11111111.11111111.11111111.00000000
-----------------------------------------------
-Result:        11000000.10101000.00000001.00000000
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Interpreting the Result:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The result of the logical AND operation is &amp;ldquo;11000000.10101000.00000001.00000000&amp;rdquo;. This binary value can be converted back to decimal, resulting in &amp;ldquo;192.168.1.0&amp;rdquo;.&lt;/p&gt;
-&lt;p&gt;The &amp;ldquo;192.168.1.0&amp;rdquo; address represents the network address portion of the IP address &amp;ldquo;192.168.1.10&amp;rdquo; within the context of the subnet defined by the &amp;ldquo;255.255.255.0&amp;rdquo; subnet mask. This means that all devices with IP addresses that share the same network address of &amp;ldquo;192.168.1.0&amp;rdquo; and belong to the same subnet will be able to communicate directly with each other without the need for routing through a gateway.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Host Address:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The remaining portion of the IP address (&amp;ldquo;10&amp;rdquo; in this case) represents the host address within the subnet. Devices with different host addresses can still communicate within the same subnet, but devices with different network addresses (belonging to different subnets) will require routing to communicate.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;In essence, the logical AND operation with the subnet mask allows networking devices to quickly determine the network address of an IP address and make decisions about whether communication can occur directly on the local network or if routing is needed to reach different networks.&lt;/p&gt;
-&lt;p&gt;In summary, a subnet mask is a key component in IP addressing and subnetting, helping devices determine which part of an IP address identifies the network and which part identifies individual devices within that network.&lt;/p&gt;
+      <title>Differences Between Ssl and Tls</title>
+      <link>http://localhost:1313/posts/differences-between-ssl-and-tls/</link>
+      <description>&lt;p&gt;While they serve a similar purpose, they are not quite the same. In this article, we’ll delve into the differences between SSL (Secure Sockets Layer) and TLS (Transport Layer Security) protocols.&lt;/p&gt;
+&lt;p&gt;In the world of online security, SSL and TLS are two terms that often come up when discussing encrypted communication. They both play a crucial role in ensuring that our sensitive data remains safe while traversing the vast expanses of the internet. While they serve a similar purpose, they are not quite the same. In this article, we&amp;rsquo;ll delve into the differences between SSL (Secure Sockets Layer) and TLS (Transport Layer Security) protocols.&lt;/p&gt;
+&lt;h2 id=&#34;evolution-and-origins&#34;&gt;Evolution and Origins&lt;/h2&gt;
+&lt;p&gt;SSL, the pioneer in secure communication, emerged in the 1990s as a response to the need for encrypted data transmission over networks. It went through several iterations, from SSL 1.0 to SSL 3.0. However, it wasn&amp;rsquo;t long before security vulnerabilities were discovered in SSL 2.0 and 3.0, leading to the need for a more robust solution.&lt;/p&gt;
+&lt;p&gt;Enter TLS. Transport Layer Security, or TLS, can be seen as the next step in the evolution of secure communication. TLS 1.0 was designed to address the shortcomings of SSL and build upon its foundations to offer improved security measures.&lt;/p&gt;
+&lt;h2 id=&#34;focus-on-security&#34;&gt;Focus on Security&lt;/h2&gt;
+&lt;p&gt;One of the significant differences between SSL and TLS lies in their approach to security. While both protocols employ cryptographic techniques to encrypt data, TLS was developed with a greater emphasis on security. The vulnerabilities found in SSL versions prompted developers to rethink and enhance the security mechanisms for data protection.&lt;/p&gt;
+&lt;p&gt;TLS has undergone more extensive scrutiny and has benefited from lessons learned from SSL&amp;rsquo;s vulnerabilities. This increased focus on security translates into a more secure and robust protocol for safeguarding sensitive information.&lt;/p&gt;
+&lt;h2 id=&#34;version-numbers&#34;&gt;Version Numbers&lt;/h2&gt;
+&lt;p&gt;Another key distinction between SSL and TLS is the version numbers of the protocols. SSL&amp;rsquo;s iterations include SSL 1.0, SSL 2.0, and SSL 3.0. However, due to vulnerabilities and weaknesses found in SSL 2.0 and 3.0, these versions are now considered deprecated and insecure for use.&lt;/p&gt;
+&lt;p&gt;TLS, on the other hand, has a series of versions that have progressively improved security measures. These versions include TLS 1.0, TLS 1.1, TLS 1.2, and TLS 1.3. Each version has introduced stronger encryption algorithms, enhanced key exchange methods, and improved security features, ensuring a higher level of protection for online communication.&lt;/p&gt;
+&lt;h2 id=&#34;compatibility-and-usage&#34;&gt;Compatibility and Usage&lt;/h2&gt;
+&lt;p&gt;As the security landscape evolved, TLS gained wider acceptance as the go-to protocol for secure communication. Modern web browsers and applications prioritize the use of TLS over SSL due to its enhanced security features. This shift has led to increased compatibility and support for TLS across a variety of devices and platforms.&lt;/p&gt;
+&lt;p&gt;In contrast, due to the known vulnerabilities and security flaws, SSL is largely deprecated and discouraged for use in contemporary systems. Many websites and services have transitioned to using TLS exclusively to ensure the highest level of security for their users.&lt;/p&gt;
+&lt;h2 id=&#34;bottom-line&#34;&gt;Bottom line&lt;/h2&gt;
+&lt;p&gt;In the ever-evolving landscape of online security, SSL and TLS have played vital roles in ensuring the confidentiality and integrity of data during transmission. While SSL paved the way, TLS emerged as the more secure and advanced protocol, addressing the shortcomings of its predecessor and introducing stronger security measures. As we continue to navigate the digital realm, understanding the differences between SSL and TLS empowers us to make informed decisions about the security of our online interactions.&lt;/p&gt;
 </description>
       <author>Aryan Ahmed</author>
-      <guid>http://localhost:1313/posts/subnet-masks/</guid>
-      <pubDate>Mon, 16 Dec 2024 19:53:11 +0100</pubDate>
-    </item>
-    
-    <item>
-      <title>Saying Goodbye to Evernote Finally</title>
-      <link>http://localhost:1313/posts/saying-goodbye-to-evernote-finally/</link>
-      <description>&lt;p&gt;I’m an average note taker. But, I do take notes on a regular basis. I prefer writing things down, helps me tackle them. Whether it is a task, or just planning about next week or anything.&lt;/p&gt;
-&lt;p&gt;As working in tech, obviously I tried out some digital note taking apps and I think I’ve tried out most of the major ones (till now, as of writing, 2. Mar 2024). I started my digital note taking with &lt;a href=&#34;https://www.evernote.com/&#34;&gt;Evernote&lt;/a&gt;.  I then switched to something else but mainly for trying and finally settled for evernote in 2017.&lt;/p&gt;
-&lt;p&gt;I liked their design, 3 column view. We could focus on the note itself when writing or perhaps reading. And supported many options for formatting. Like tables.&lt;/p&gt;
-&lt;p&gt;However, over the years, evernote has lacked innovation and it’s development was poor to say the least. I do not know what was going on inside the company. But as a customer, it was very very disappointing.&lt;/p&gt;
-&lt;p&gt;I obviously switched to different notes and tried them out and kept an eye on evernote. I’d often switch back, take 1 month’s subscription and see how things have improved. I risked more than a handful number of times to migrate all my notes to evernote and had to switch back after sometime.&lt;/p&gt;
-&lt;p&gt;In the productivity space, which I think evernote roams around, simplicity is your best friend. In other words, complex systems can make you less productive. A productive note taking app (or any app in this space) should be a companion, I want it like something at the back of my head but not too bothered with. Simple, fast and it works.&lt;/p&gt;
-&lt;p&gt;Over the years, evernote lost all three I guess. They were so busy with their ‘&lt;strong&gt;home&lt;/strong&gt;’ and ‘&lt;strong&gt;tasks&lt;/strong&gt;’, they didn’t bother to keep the basic things running. Or they failed to do so.&lt;/p&gt;
-&lt;p&gt;The only widget that was somewhat useful in evernote’s home page was the Tasks area, which would show you today’s tasks. Apart from that, showing notebooks, recently captured, pinned note, recent notes, none of them were that appealing or had made any impact.&lt;/p&gt;
-&lt;p&gt;Integration with calendars, tasks, organize your home. But evernote became very slow. I had so much trouble syncing with my mobile and desktop version of the app. And if you are editing the same note, its a nightmare.&lt;/p&gt;
-&lt;p&gt;And by editing, I just mean opeing that note on a different device, if the app thought it was in editing mode, maybe I had clicked somewhere which triggered collusions.&lt;/p&gt;
-&lt;p&gt;Recently they went through some major changes and I thought, okay, maybe one last time. I wanna try it out for a longer period of time and see if I can make it or not.&lt;/p&gt;
-&lt;p&gt;After (re)starting my days with evernote, they soon released a new UI and the classic black sidebar white 3 column were no more. I personally did not like the new glassy look. I at least hoped they’d allow us to choose. They did, but not between the glassy and old one. You can choose between light and dark mode and thats about it. At least I could not find the old one!&lt;/p&gt;
-&lt;p&gt;I really liked this UI.
-&lt;img
-  src=&#34;https://store-images.s-microsoft.com/image/apps.34390.9007199266246247.98c8221f-8cff-4552-a6dc-72ec835527f0.6668eaf8-4d03-48a2-94b0-79ae4d2739bb&#34;
-  alt=&#34;Evernote&#34;
-  loading=&#34;lazy&#34;
-  decoding=&#34;async&#34;
-  class=&#34;full-width&#34;
-/&gt;
-
-&lt;/p&gt;
-&lt;p&gt;Besides that, the space between the tasks themselves, the limited fonts, adding AI to do cleanup… why? Design is subjective, one can say they liked the design, and sure. But this article is about my own experience.&lt;/p&gt;
-&lt;p&gt;However, the new design wasn’t so poor though. I can make do. On March 2nd, 2024 I recevied a new notification that says new update available. I did. I had to restart my evernote and … it took around 12-15 seconds to start.&lt;/p&gt;
-&lt;p&gt;It was horribly slow, even on the same notebook, if I clicked one note and then clicked another for editing, it would take a long time to render and then open in editing mode. I don’t have the best computer in the world, but still running a macbook with m1. That can run other stuff well.&lt;/p&gt;
-&lt;p&gt;After trying to troubleshoot for sometime, I finally tried to open other note apps (apple note and bear) and decided to move on.
-I’ll be working ( going back ) to &lt;a href=&#34;https://bear.app/&#34;&gt;bear&lt;/a&gt;. They are a small team, who built an amazing app. Very beautiful, simple and works.&lt;/p&gt;
-&lt;p&gt;So, since 2017 till now, tried my best to keep up with evernote and go back when I could, in the end, the bear killed the elephant.&lt;/p&gt;
-&lt;p&gt;&lt;img
-  src=&#34;https://bear.app/images/website-icons/card.jpg&#34;
-  alt=&#34;Bear.app&#34;
-  loading=&#34;lazy&#34;
-  decoding=&#34;async&#34;
-  class=&#34;full-width&#34;
-/&gt;
-
-&lt;/p&gt;
-&lt;p&gt;This was my experience, I hope and pray other people are having better experience. And I hope, the evernote team would remember about simplicity.&lt;/p&gt;
-</description>
-      <author>Aryan Ahmed</author>
-      <guid>http://localhost:1313/posts/saying-goodbye-to-evernote-finally/</guid>
-      <pubDate>Mon, 16 Dec 2024 19:52:46 +0100</pubDate>
-    </item>
-    
-    <item>
-      <title>Prepared Statements in Sql</title>
-      <link>http://localhost:1313/posts/prepared-statements-in-sql/</link>
-      <description>&lt;p&gt;&lt;img
-  src=&#34;https://cdn-images-1.medium.com/max/2000/1*tmEFJ0LreB8wabdi67XY-Q.jpeg&#34;
-  alt=&#34;&#34;
-  loading=&#34;lazy&#34;
-  decoding=&#34;async&#34;
-  class=&#34;full-width&#34;
-/&gt;
-
-&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Prepared statement&lt;/strong&gt;s are a common thing sql world. It has many benefits like it can execute the same (or similar) SQL statements repeatedly with high efficiency. It can also prevent one of the biggest security vulnerabilities, &lt;strong&gt;SQL injection&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Compared to executing the query directly, there are primarily 3 advantages. Taking these points from w3schools,&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Prepared statements reduce parsing time as the preparation on the query is done only once (although the statement is executed multiple times).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Bound parameters minimize bandwidth to the server as you need send only the parameters each time, and not the whole query. At a later time, the application binds the values to the parameters, and the database executes the statement. The application may execute the statement as many times as it wants with different values.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Prepared statements are very useful against SQL injections, because parameter values, which are transmitted later using a different protocol, need not be correctly escaped. If the original statement template is not derived from external input, SQL injection cannot occur.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;sql-injections&#34;&gt;SQL Injections&lt;/h3&gt;
-&lt;p&gt;During an SQL injection attack, the attacker tries to bind malicious sql code with the input parameter. In earlier days, we saw http queries like &lt;code&gt;user?id=1&lt;/code&gt;, the id would be an input for the &lt;code&gt;id&lt;/code&gt; of the users table. Behind the scene, the backend code is doing making some query using that input.&lt;/p&gt;
-&lt;p&gt;Imagine we want to just read the user data from database where the id is $id (from query param). Our sql query would translate to something like this&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;SELECT (coulmns…) FROM users WHERE id = 1;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;But what if the the attacker used the following instead of the id&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;user?id=1;DROP TABLE users;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;As HTTP requests are parsed as strings (primarily), though we want id to be numeric, without proper sanitization the query would be&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;SELECT (coulmns…) FROM users WHERE id = 1; DROP TABLE users;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And given that there is sufficient permissions, this query would execute and drop the users table; A permanent mutation.&lt;/p&gt;
-&lt;h3 id=&#34;prepared-statements&#34;&gt;Prepared Statements&lt;/h3&gt;
-&lt;p&gt;This can be prevented by using &lt;code&gt;prepared statement&lt;/code&gt;s. The root cause of that problem was not separating the sql code and input data. And &lt;strong&gt;the query and the data are sent to the database server separately&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Using prepared statements, we’ll have something like&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;SELECT (columns…) FROM users where id=?&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;and data would be &lt;code&gt;**1**&lt;/code&gt;;&lt;/p&gt;
-&lt;p&gt;As our SQL query is &lt;strong&gt;a valid program as of itself&lt;/strong&gt;, if we are directly making a query, we are dynamically building the query aka &lt;em&gt;program&lt;/em&gt; in the runtime and sending it to the sql server, but using prepared statements, we first send the query &lt;code&gt;*SELECT (columns…) FROM users where id=?”*&lt;/code&gt; first. And thats our program.&lt;/p&gt;
-&lt;p&gt;Now, this program needs 1 (&lt;em&gt;id=?&lt;/em&gt;) parameter in this example. Now we send the second piece, our data is &lt;em&gt;$data=1&lt;/em&gt;;&lt;/p&gt;
-&lt;p&gt;In this approach, our core SQL program (the query) can not be altered, the second request is only feeding the data itself.&lt;/p&gt;
-&lt;h3 id=&#34;command-vs-data&#34;&gt;Command vs Data&lt;/h3&gt;
-&lt;p&gt;Or &lt;em&gt;to execute or not to&lt;/em&gt;. So what happens if we still use the same input &lt;code&gt;?id=1;DROP TABLE users;&lt;/code&gt; ? Well, the input is not parsed, neither executed. Imagine having an executable but not executing it.&lt;/p&gt;
-&lt;p&gt;Lets take a look at the following code,&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$data = &amp;quot;1; DROP TABLE users;&amp;quot;
-$db-&amp;gt;prepare(&amp;quot;SELECT (columns…) FROM users WHERE id=?&amp;quot;);
- 
-$db-&amp;gt;execute($data);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Shouldn’t this also translate to the same query? Well, the answer is &lt;strong&gt;no&lt;/strong&gt;. AS mentioned, the query is a command that is executed, the data is not. For our instance, the data &lt;code&gt;*1; DROP Table users*&lt;/code&gt; would fail to find a valid result.&lt;/p&gt;
-&lt;p&gt;Here are some scenarios,&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;If we have proper constraints and imagine the &lt;code&gt;id&lt;/code&gt; column is &lt;code&gt;numeric&lt;/code&gt; (eg int)&lt;/strong&gt; the query should not return any results because &lt;code&gt;*1;DROP TABLE users;*&lt;/code&gt; is not a numeric value and not compareable.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;If we don’t have proper constraints and &lt;code&gt;id&lt;/code&gt; is not &lt;code&gt;numeric&lt;/code&gt; either. Say its a &lt;code&gt;text&lt;/code&gt; field&lt;/strong&gt; well, its used as value and the query translate to something like &lt;code&gt;*SELECT (columns…) FROM users WHERE id=”1; DROP TABLE users”;*&lt;/code&gt;. The &lt;code&gt;*1; DROP TABLE users”;*&lt;/code&gt; portion is the data. In direct queries and sql injections, this would translate to &lt;code&gt;*1*&lt;/code&gt; being the data and the later part would be a query, acting as data but also being executed, causing the injection.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;If its a write query&lt;/strong&gt; in this scenario, given its numeric, it’ll cause an error because that payload is not a numeric value, and if it’s a text field, it will be inserted in the field. In summary, it will behave according to the constraints but &lt;strong&gt;WILL NOT EXECUTE&lt;/strong&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;But either way, whether we get the results or not (with invalid inputs), and maybe the input was not sanitized, but not getting any results are not an vulnerability.&lt;/p&gt;
-&lt;p&gt;Simple, yet amazing, is it not?&lt;/p&gt;
-&lt;p&gt;Feel free to point out any mistakes I’ve made.&lt;/p&gt;
-</description>
-      <author>Aryan Ahmed</author>
-      <guid>http://localhost:1313/posts/prepared-statements-in-sql/</guid>
-      <pubDate>Mon, 16 Dec 2024 19:52:18 +0100</pubDate>
+      <guid>http://localhost:1313/posts/differences-between-ssl-and-tls/</guid>
+      <pubDate>Fri, 25 Oct 2024 19:48:19 +0100</pubDate>
     </item>
     
     <item>
@@ -237,7 +79,7 @@ struct Storage {
   // other props
 }
 
-let storage = Storage::from(LocalFileSystemAdapterConfig | S3AdapterConfig); 
+let storage = Storage::from(LocalFileSystemAdapterConfig | S3AdapterConfig);
 
 // and based on the given config
 storage.disk = LocalFileSystem | S3
@@ -289,7 +131,7 @@ impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;We also need to change our method’s signature from&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;pub fn new&amp;lt;T : dyn StorageAdapterConfigTrait&amp;gt;(config: T) 
+&lt;pre&gt;&lt;code&gt;pub fn new&amp;lt;T : dyn StorageAdapterConfigTrait&amp;gt;(config: T)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;to&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;pub fn new(config: &amp;amp;dyn Any)
@@ -301,7 +143,7 @@ impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
             .downcast_ref::&amp;lt;LocalFileSystemAdapterConfig&amp;gt;()
             .expect(&amp;quot;failed to downcast&amp;quot;);
 
-// the syntax is 
+// the syntax is
 // .downcast_ref::&amp;lt;$CONCRETE_TYPE&amp;gt;().expect(&amp;quot;msg&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The full code,&lt;/p&gt;
@@ -319,7 +161,7 @@ impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
             base_dir: base_dir.to_string(),
         }
     }
-  
+
   // ...
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -338,116 +180,7 @@ impl StorageAdapterConfig for LocalFileSystemAdapterConfig {
 </description>
       <author>Aryan Ahmed</author>
       <guid>http://localhost:1313/posts/dynamic-trait-to-a-concrete-type-in-rust/</guid>
-      <pubDate>Mon, 16 Dec 2024 19:48:45 +0100</pubDate>
-    </item>
-    
-    <item>
-      <title>Differences Between Ssl and Tls</title>
-      <link>http://localhost:1313/posts/differences-between-ssl-and-tls/</link>
-      <description>&lt;p&gt;While they serve a similar purpose, they are not quite the same. In this article, we’ll delve into the differences between SSL (Secure Sockets Layer) and TLS (Transport Layer Security) protocols.&lt;/p&gt;
-&lt;p&gt;In the world of online security, SSL and TLS are two terms that often come up when discussing encrypted communication. They both play a crucial role in ensuring that our sensitive data remains safe while traversing the vast expanses of the internet. While they serve a similar purpose, they are not quite the same. In this article, we&amp;rsquo;ll delve into the differences between SSL (Secure Sockets Layer) and TLS (Transport Layer Security) protocols.&lt;/p&gt;
-&lt;h2 id=&#34;evolution-and-origins&#34;&gt;Evolution and Origins&lt;/h2&gt;
-&lt;p&gt;SSL, the pioneer in secure communication, emerged in the 1990s as a response to the need for encrypted data transmission over networks. It went through several iterations, from SSL 1.0 to SSL 3.0. However, it wasn&amp;rsquo;t long before security vulnerabilities were discovered in SSL 2.0 and 3.0, leading to the need for a more robust solution.&lt;/p&gt;
-&lt;p&gt;Enter TLS. Transport Layer Security, or TLS, can be seen as the next step in the evolution of secure communication. TLS 1.0 was designed to address the shortcomings of SSL and build upon its foundations to offer improved security measures.&lt;/p&gt;
-&lt;h2 id=&#34;focus-on-security&#34;&gt;Focus on Security&lt;/h2&gt;
-&lt;p&gt;One of the significant differences between SSL and TLS lies in their approach to security. While both protocols employ cryptographic techniques to encrypt data, TLS was developed with a greater emphasis on security. The vulnerabilities found in SSL versions prompted developers to rethink and enhance the security mechanisms for data protection.&lt;/p&gt;
-&lt;p&gt;TLS has undergone more extensive scrutiny and has benefited from lessons learned from SSL&amp;rsquo;s vulnerabilities. This increased focus on security translates into a more secure and robust protocol for safeguarding sensitive information.&lt;/p&gt;
-&lt;h2 id=&#34;version-numbers&#34;&gt;Version Numbers&lt;/h2&gt;
-&lt;p&gt;Another key distinction between SSL and TLS is the version numbers of the protocols. SSL&amp;rsquo;s iterations include SSL 1.0, SSL 2.0, and SSL 3.0. However, due to vulnerabilities and weaknesses found in SSL 2.0 and 3.0, these versions are now considered deprecated and insecure for use.&lt;/p&gt;
-&lt;p&gt;TLS, on the other hand, has a series of versions that have progressively improved security measures. These versions include TLS 1.0, TLS 1.1, TLS 1.2, and TLS 1.3. Each version has introduced stronger encryption algorithms, enhanced key exchange methods, and improved security features, ensuring a higher level of protection for online communication.&lt;/p&gt;
-&lt;h2 id=&#34;compatibility-and-usage&#34;&gt;Compatibility and Usage&lt;/h2&gt;
-&lt;p&gt;As the security landscape evolved, TLS gained wider acceptance as the go-to protocol for secure communication. Modern web browsers and applications prioritize the use of TLS over SSL due to its enhanced security features. This shift has led to increased compatibility and support for TLS across a variety of devices and platforms.&lt;/p&gt;
-&lt;p&gt;In contrast, due to the known vulnerabilities and security flaws, SSL is largely deprecated and discouraged for use in contemporary systems. Many websites and services have transitioned to using TLS exclusively to ensure the highest level of security for their users.&lt;/p&gt;
-&lt;h2 id=&#34;bottom-line&#34;&gt;Bottom line&lt;/h2&gt;
-&lt;p&gt;In the ever-evolving landscape of online security, SSL and TLS have played vital roles in ensuring the confidentiality and integrity of data during transmission. While SSL paved the way, TLS emerged as the more secure and advanced protocol, addressing the shortcomings of its predecessor and introducing stronger security measures. As we continue to navigate the digital realm, understanding the differences between SSL and TLS empowers us to make informed decisions about the security of our online interactions.&lt;/p&gt;
-</description>
-      <author>Aryan Ahmed</author>
-      <guid>http://localhost:1313/posts/differences-between-ssl-and-tls/</guid>
-      <pubDate>Mon, 16 Dec 2024 19:48:19 +0100</pubDate>
-    </item>
-    
-    <item>
-      <title>Concurrency in Golang Part 1</title>
-      <link>http://localhost:1313/posts/concurrency-in-golang-part-1/</link>
-      <description>&lt;p&gt;This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.&lt;/p&gt;
-&lt;h2 id=&#34;what-is-concurrency&#34;&gt;What is Concurrency?&lt;/h2&gt;
-&lt;p&gt;Concurrency refers to the simultaneous and autonomous execution of multiple processes. This approach ensures that when multiple threads share or access a common resource, undesirable scenarios such as race conditions or deadlocks are avoided. Concurrency also enables disparate computations to yield identical results regardless of the order in which they are performed.&lt;/p&gt;
-&lt;p&gt;In the context of single-core hardware, concurrency can be attained through context switching. Conversely, in multicore hardware, parallelism comes into play to achieve concurrency.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once.” — Rob Pike&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=oV9rvDllKEg&amp;amp;ab_channel=gnbitcom&#34;&gt;https://www.youtube.com/watch?v=oV9rvDllKEg&amp;amp;ab_channel=gnbitcom&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Before going into patterns, I would like to talk about a few concepts, relevant for writing concurrent code.&lt;/p&gt;
-&lt;h2 id=&#34;deadlock&#34;&gt;Deadlock&lt;/h2&gt;
-&lt;p&gt;A deadlock is a situation when a task is waiting for something that will never happen. For freshers, a job needs experience, and to have experience you need a job is sort of like a deadlock situation.&lt;br&gt;
-For simplicity,&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;In a deadlock, two processes wait for each other.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;In terms of go, both of the following will result in a deadlock. The &lt;code&gt;make(chan int)&lt;/code&gt; creates an unbuffered channel.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;main&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;main&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75af00&#34;&gt;channel&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;make&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;chan&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;channel&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// or &lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//  channel &amp;lt;- 1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#111&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;livelock&#34;&gt;Livelock&lt;/h2&gt;
-&lt;p&gt;A livelock situation is a scenario where the processes are trying to resolve the issue within themselves but, they do not succeed. Imagine in an aeroplane isle, only one person can walk. If two people wants to go to the opposite end, they&amp;rsquo;ll be blocked by each other in the middle. In a livelock situation, they&amp;rsquo;d go back or try in a different way to cross the isle together, individually, but at the same time (timeframe), but will fail cause the isle only allows one person at a time.&lt;/p&gt;
-&lt;p&gt;Though they are trying to solve it, they&amp;rsquo;ll not be able to (unless one of them goes back to the starting point and waits for the other person two cross).&lt;/p&gt;
-&lt;h2 id=&#34;race-condition&#34;&gt;Race condition&lt;/h2&gt;
-&lt;p&gt;Race condition is a scenario where two or more threads have access to the same data and wants to update it simultaneously. But due to the lack of order, the changes are committed.&lt;/p&gt;
-&lt;p&gt;Take the following code for example, we have a simple for loop that calls an anonymous function to increment the value of &lt;code&gt;x&lt;/code&gt; by 1. We call it 5 times. Though in synchronous code, the final result will be 5, in this code, the value will be &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;fmt&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;Println&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;Initial value of x is &amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;;&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#00a8c8&#34;&gt;go&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;func&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;{&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// spawn goroutines here&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#75af00&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#111&#34;&gt;}()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#111&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;fmt&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;Println&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;Final value of x is &amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The reason for this is when the nested function reads the value of &lt;code&gt;x&lt;/code&gt; it is still &lt;code&gt;0&lt;/code&gt;, and it increses by 1, but by these time, all other spwaned goroutines have read the same value and increased by 1.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Sidenote&lt;/strong&gt;  Why &lt;code&gt;0&lt;/code&gt; then? Why not &lt;code&gt;1&lt;/code&gt; ? &lt;code&gt;goroutines&lt;/code&gt; does not wait for this operation to finish and therefore, by the time the final &lt;code&gt;println&lt;/code&gt; is called, the value is still 0.&lt;/p&gt;
-&lt;h2 id=&#34;starvation&#34;&gt;Starvation&lt;/h2&gt;
-&lt;p&gt;One of the ways to solve this race condition would be to use a mutex lock. But imagine a scenario, we have different tasks with different priorities, and what if a task with higher prirority keeps executing (and keeps the CPU busy)? Or the scheduler schedules more high priority tasks and pushes them in the middle?&lt;/p&gt;
-&lt;p&gt;In this scenario the lower priority task/s will never get executed or will execute after a long delay.&lt;/p&gt;
-&lt;h2 id=&#34;synchronization-sync&#34;&gt;Synchronization (sync)&lt;/h2&gt;
-&lt;p&gt;It is essential that we sync our tasks when writing concurrent programs. There are a few concepts in these scenarios that we can follow. Golang also has libraries for them. I&amp;rsquo;ll talk about &lt;strong&gt;mutex&lt;/strong&gt;, &lt;strong&gt;atomic&lt;/strong&gt; and &lt;strong&gt;waitgroups&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;mutex&#34;&gt;Mutex&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A mutex is a synchronization primitive used in concurrent programming to control access to shared resources, such as variables, data structures, or code sections, in a way that ensures only one thread or process can access the resource at a time.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;Mutex is short for &lt;code&gt;mutual exclusion&lt;/code&gt;. A mutex provides two functionalities, acquiring and releasing (a) lock. When we are working with shared data, before starting to work with it, we put a &lt;code&gt;lock&lt;/code&gt; in it, so other threads can not update the value until we release the lock. After our operation is done, we &lt;code&gt;release&lt;/code&gt; the lock.&lt;/p&gt;
-&lt;h2 id=&#34;atomic&#34;&gt;Atomic&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;sync/atomic&lt;/code&gt; package provides low-level atomic memory operations for basic types, allowing you to perform atomic operations on variables shared by multiple &lt;code&gt;goroutines&lt;/code&gt; without the need for explicit locking. This is crucial for writing safe and efficient concurrent programs.&lt;/p&gt;
-&lt;h2 id=&#34;waitgroup&#34;&gt;WaitGroup&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;sync.WaitGroup&lt;/code&gt; type in Go is a synchronization primitive used to wait for a collection of goroutines to finish their execution. It provides a way to block the execution of a program until a specified number of goroutines complete their work. This is particularly useful when you have a set of concurrent tasks and you need to ensure that all of them have finished before proceeding with the rest of the program.&lt;/p&gt;
-&lt;h2 id=&#34;channels&#34;&gt;Channels&lt;/h2&gt;
-&lt;p&gt;A channel is like a pathway that lets different functions talk to each other while they&amp;rsquo;re running at the same time. You can send and get data through it, like numbers or words. When you&amp;rsquo;ve got lots of tasks happening all together, channels make it easy for them to share information. Think of them as the connections between these tasks. Channels are kind of like pointers, so you can easily give them to tasks and use them to pass data back and forth.&lt;/p&gt;
-&lt;p&gt;It is one of the most important features of golang. Go has two types of channels. Buffered and unbuffered. Buffered channels are simply a channel with some capacities. It can hold values. While you can think of channels being pipes, buffered channels are pipes with buckets (to store something).&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// unbuffered channel&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;unbufferedChannel&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;chan&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;int&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;unbufferedChannel&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;make&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;chan&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;go&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;func&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75af00&#34;&gt;unbufferedChannel&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#111&#34;&gt;}()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;fmt&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;Println&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;unbuffered channel &amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;unbufferedChannel&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// buffered channel&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;bufferedChannel&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;make&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;chan&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;bufferedChannel&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;bufferedChannel&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// bufferedChannel &amp;lt;- 3 // uncommeting this line will block cause the capaticity is 2 &lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;fmt&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;Println&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;first channel &amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;bufferedChannel&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;fmt&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;Println&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;first channel&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt;&lt;span style=&#34;color:#75af00&#34;&gt;bufferedChannel&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-      <author>Aryan Ahmed</author>
-      <guid>http://localhost:1313/posts/concurrency-in-golang-part-1/</guid>
-      <pubDate>Mon, 16 Dec 2024 19:47:48 +0100</pubDate>
+      <pubDate>Thu, 17 Oct 2024 19:48:45 +0100</pubDate>
     </item>
     
     <item>
@@ -504,7 +237,83 @@ For simplicity,&lt;/p&gt;
 </description>
       <author>Aryan Ahmed</author>
       <guid>http://localhost:1313/posts/choosing-the-right-string-type-in-rust-a-journey-of-a-novice/</guid>
-      <pubDate>Mon, 16 Dec 2024 19:47:06 +0100</pubDate>
+      <pubDate>Sun, 01 Sep 2024 19:47:06 +0100</pubDate>
+    </item>
+    
+    <item>
+      <title>Prepared Statements in Sql</title>
+      <link>http://localhost:1313/posts/prepared-statements-in-sql/</link>
+      <description>&lt;p&gt;&lt;img
+  src=&#34;https://cdn-images-1.medium.com/max/2000/1*tmEFJ0LreB8wabdi67XY-Q.jpeg&#34;
+  alt=&#34;&#34;
+  loading=&#34;lazy&#34;
+  decoding=&#34;async&#34;
+  class=&#34;full-width&#34;
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Prepared statement&lt;/strong&gt;s are a common thing sql world. It has many benefits like it can execute the same (or similar) SQL statements repeatedly with high efficiency. It can also prevent one of the biggest security vulnerabilities, &lt;strong&gt;SQL injection&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Compared to executing the query directly, there are primarily 3 advantages. Taking these points from w3schools,&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Prepared statements reduce parsing time as the preparation on the query is done only once (although the statement is executed multiple times).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bound parameters minimize bandwidth to the server as you need send only the parameters each time, and not the whole query. At a later time, the application binds the values to the parameters, and the database executes the statement. The application may execute the statement as many times as it wants with different values.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Prepared statements are very useful against SQL injections, because parameter values, which are transmitted later using a different protocol, need not be correctly escaped. If the original statement template is not derived from external input, SQL injection cannot occur.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;sql-injections&#34;&gt;SQL Injections&lt;/h3&gt;
+&lt;p&gt;During an SQL injection attack, the attacker tries to bind malicious sql code with the input parameter. In earlier days, we saw http queries like &lt;code&gt;user?id=1&lt;/code&gt;, the id would be an input for the &lt;code&gt;id&lt;/code&gt; of the users table. Behind the scene, the backend code is doing making some query using that input.&lt;/p&gt;
+&lt;p&gt;Imagine we want to just read the user data from database where the id is $id (from query param). Our sql query would translate to something like this&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT (coulmns…) FROM users WHERE id = 1;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But what if the the attacker used the following instead of the id&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;user?id=1;DROP TABLE users;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As HTTP requests are parsed as strings (primarily), though we want id to be numeric, without proper sanitization the query would be&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT (coulmns…) FROM users WHERE id = 1; DROP TABLE users;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And given that there is sufficient permissions, this query would execute and drop the users table; A permanent mutation.&lt;/p&gt;
+&lt;h3 id=&#34;prepared-statements&#34;&gt;Prepared Statements&lt;/h3&gt;
+&lt;p&gt;This can be prevented by using &lt;code&gt;prepared statement&lt;/code&gt;s. The root cause of that problem was not separating the sql code and input data. And &lt;strong&gt;the query and the data are sent to the database server separately&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Using prepared statements, we’ll have something like&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT (columns…) FROM users where id=?&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and data would be &lt;code&gt;**1**&lt;/code&gt;;&lt;/p&gt;
+&lt;p&gt;As our SQL query is &lt;strong&gt;a valid program as of itself&lt;/strong&gt;, if we are directly making a query, we are dynamically building the query aka &lt;em&gt;program&lt;/em&gt; in the runtime and sending it to the sql server, but using prepared statements, we first send the query &lt;code&gt;*SELECT (columns…) FROM users where id=?”*&lt;/code&gt; first. And thats our program.&lt;/p&gt;
+&lt;p&gt;Now, this program needs 1 (&lt;em&gt;id=?&lt;/em&gt;) parameter in this example. Now we send the second piece, our data is &lt;em&gt;$data=1&lt;/em&gt;;&lt;/p&gt;
+&lt;p&gt;In this approach, our core SQL program (the query) can not be altered, the second request is only feeding the data itself.&lt;/p&gt;
+&lt;h3 id=&#34;command-vs-data&#34;&gt;Command vs Data&lt;/h3&gt;
+&lt;p&gt;Or &lt;em&gt;to execute or not to&lt;/em&gt;. So what happens if we still use the same input &lt;code&gt;?id=1;DROP TABLE users;&lt;/code&gt; ? Well, the input is not parsed, neither executed. Imagine having an executable but not executing it.&lt;/p&gt;
+&lt;p&gt;Lets take a look at the following code,&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$data = &amp;quot;1; DROP TABLE users;&amp;quot;
+$db-&amp;gt;prepare(&amp;quot;SELECT (columns…) FROM users WHERE id=?&amp;quot;);
+
+$db-&amp;gt;execute($data);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Shouldn’t this also translate to the same query? Well, the answer is &lt;strong&gt;no&lt;/strong&gt;. AS mentioned, the query is a command that is executed, the data is not. For our instance, the data &lt;code&gt;*1; DROP Table users*&lt;/code&gt; would fail to find a valid result.&lt;/p&gt;
+&lt;p&gt;Here are some scenarios,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;If we have proper constraints and imagine the &lt;code&gt;id&lt;/code&gt; column is &lt;code&gt;numeric&lt;/code&gt; (eg int)&lt;/strong&gt; the query should not return any results because &lt;code&gt;*1;DROP TABLE users;*&lt;/code&gt; is not a numeric value and not compareable.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;If we don’t have proper constraints and &lt;code&gt;id&lt;/code&gt; is not &lt;code&gt;numeric&lt;/code&gt; either. Say its a &lt;code&gt;text&lt;/code&gt; field&lt;/strong&gt; well, its used as value and the query translate to something like &lt;code&gt;*SELECT (columns…) FROM users WHERE id=”1; DROP TABLE users”;*&lt;/code&gt;. The &lt;code&gt;*1; DROP TABLE users”;*&lt;/code&gt; portion is the data. In direct queries and sql injections, this would translate to &lt;code&gt;*1*&lt;/code&gt; being the data and the later part would be a query, acting as data but also being executed, causing the injection.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;If its a write query&lt;/strong&gt; in this scenario, given its numeric, it’ll cause an error because that payload is not a numeric value, and if it’s a text field, it will be inserted in the field. In summary, it will behave according to the constraints but &lt;strong&gt;WILL NOT EXECUTE&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;But either way, whether we get the results or not (with invalid inputs), and maybe the input was not sanitized, but not getting any results are not an vulnerability.&lt;/p&gt;
+&lt;p&gt;Simple, yet amazing, is it not?&lt;/p&gt;
+&lt;p&gt;Feel free to point out any mistakes I’ve made.&lt;/p&gt;
+</description>
+      <author>Aryan Ahmed</author>
+      <guid>http://localhost:1313/posts/prepared-statements-in-sql/</guid>
+      <pubDate>Mon, 19 Aug 2024 19:52:18 +0100</pubDate>
     </item>
     
     <item>
@@ -731,7 +540,7 @@ Build a program that stores valid urls against an unique id&lt;/p&gt;
 </description>
       <author>Aryan Ahmed</author>
       <guid>http://localhost:1313/posts/building-a-url-shortener-with-rust-and-redis/</guid>
-      <pubDate>Mon, 16 Dec 2024 19:46:16 +0100</pubDate>
+      <pubDate>Fri, 09 Aug 2024 19:46:16 +0100</pubDate>
     </item>
     
     <item>
@@ -754,10 +563,10 @@ Build a program that stores valid urls against an unique id&lt;/p&gt;
 &lt;p&gt;When a function is called, that is when we actually put our sheet of paper on top of our stack. Lets take a look at the following code,&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;main&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#111&#34;&gt;println!&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;Hello, World&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#00a8c8&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;x&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#111&#34;&gt;println&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;{}&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;x&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#111&#34;&gt;print_another_variable&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;();&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#111&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
@@ -858,16 +667,16 @@ If we update the string to Hello, our capacity still remain 12, but our length w
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// added `mut` here
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#00a8c8&#34;&gt;mut&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt;::&lt;span style=&#34;color:#111&#34;&gt;from&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;Hello&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#111&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;print_something&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;a&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#111&#34;&gt;println!&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;a in main =&amp;gt; &lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;{}&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;a&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#111&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Notice the &amp;#34; -&amp;gt; String&amp;#34;, it means it is gonna return a string
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00a8c8&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#75af00&#34;&gt;print_something&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;a&lt;/span&gt; : &lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;)&lt;/span&gt; -&amp;gt; &lt;span style=&#34;color:#111&#34;&gt;String&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#111&#34;&gt;println!&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;inside the function =&amp;gt; &lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;{}&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;a&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#111&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// here we are returning a string value
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We needed to add mut because rust’s variables are by default immutable. But the key point here is in a = print_something(a), we are getting back a string from the print_something() function.&lt;/p&gt;
@@ -878,7 +687,7 @@ If we update the string to Hello, our capacity still remain 12, but our length w
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;// we are passing a reference, denoted by &amp;#39;&amp;amp;&amp;#39;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;print_something&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;a&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#111&#34;&gt;println!&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;a in main =&amp;gt; &lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;{}&lt;/span&gt;&lt;span style=&#34;color:#d88200&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#111&#34;&gt;a&lt;/span&gt;&lt;span style=&#34;color:#111&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#111&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
@@ -918,7 +727,7 @@ You can tell what a function do.&lt;/p&gt;
 </description>
       <author>Aryan Ahmed</author>
       <guid>http://localhost:1313/posts/rust-memory-ownership-and-borrowing/</guid>
-      <pubDate>Mon, 16 Dec 2024 19:43:22 +0100</pubDate>
+      <pubDate>Thu, 27 Jun 2024 19:43:22 +0100</pubDate>
     </item>
     
   </channel>

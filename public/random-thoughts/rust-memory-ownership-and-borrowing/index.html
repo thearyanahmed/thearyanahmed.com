@@ -7,26 +7,26 @@
     <meta name="author" content="Liste - http://localhost:1313/">
     <title>Rust Memory Ownership and Borrowing | Aryan&#39;s Journal</title>
     <meta name="description" content="Random bits and bytes from Aryan&#39;s Journey">
-    <meta property="og:url" content="http://localhost:1313/posts/rust-memory-ownership-and-borrowing/">
+    <meta property="og:url" content="http://localhost:1313/random-thoughts/rust-memory-ownership-and-borrowing/">
   <meta property="og:site_name" content="Aryan&#39;s Journal">
   <meta property="og:title" content="Rust Memory Ownership and Borrowing">
   <meta property="og:description" content="Rust has a pretty good approach to handling this. There is a bit of learning curve. But if you skip it for any reason, or don’t understand it quite well, then it’ll be difficult for you to write good rust code.
 It’s the ownership model. That keeps us safe and lets us sleep at night after we deploy we rust code to production. This is also how rust avoids a garbage collector.">
   <meta property="og:locale" content="en_gb">
   <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-06-27T19:43:22+01:00">
-    <meta property="article:modified_time" content="2024-06-27T19:43:22+01:00">
+    <meta property="article:section" content="random-thoughts">
+    <meta property="article:published_time" content="2024-12-16T19:43:22+01:00">
+    <meta property="article:modified_time" content="2024-12-16T19:43:22+01:00">
 
     
   <meta itemprop="name" content="Rust Memory Ownership and Borrowing">
   <meta itemprop="description" content="Rust has a pretty good approach to handling this. There is a bit of learning curve. But if you skip it for any reason, or don’t understand it quite well, then it’ll be difficult for you to write good rust code.
 It’s the ownership model. That keeps us safe and lets us sleep at night after we deploy we rust code to production. This is also how rust avoids a garbage collector.">
-  <meta itemprop="datePublished" content="2024-06-27T19:43:22+01:00">
-  <meta itemprop="dateModified" content="2024-06-27T19:43:22+01:00">
+  <meta itemprop="datePublished" content="2024-12-16T19:43:22+01:00">
+  <meta itemprop="dateModified" content="2024-12-16T19:43:22+01:00">
   <meta itemprop="wordCount" content="2182">
     
-    <link rel="canonical" href="http://localhost:1313/posts/rust-memory-ownership-and-borrowing/">
+    <link rel="canonical" href="http://localhost:1313/random-thoughts/rust-memory-ownership-and-borrowing/">
     <link rel="icon" href="http://localhost:1313//assets/favicon.ico">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
@@ -45,7 +45,7 @@ It’s the ownership model. That keeps us safe and lets us sleep at night after 
   {
       "@context": "http://schema.org",
       "@type": "BlogPosting",
-      "articleSection": "posts",
+      "articleSection": "random-thoughts",
       "name": "Rust Memory Ownership and Borrowing",
       "headline": "Rust Memory Ownership and Borrowing",
       "alternativeHeadline": "",
@@ -54,7 +54,7 @@ It’s the ownership model. That keeps us safe and lets us sleep at night after 
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "http:\/\/localhost:1313\/posts\/rust-memory-ownership-and-borrowing\/"
+          "@id": "http:\/\/localhost:1313\/random-thoughts\/rust-memory-ownership-and-borrowing\/"
       },
       "author" : {
           "@type": "Person",
@@ -70,9 +70,9 @@ It’s the ownership model. That keeps us safe and lets us sleep at night after 
       },
       "copyrightHolder" : "Aryan\u0027s Journal",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-06-27T19:43:22.00Z",
-      "datePublished": "2024-06-27T19:43:22.00Z",
-      "dateModified": "2024-06-27T19:43:22.00Z",
+      "dateCreated": "2024-12-16T19:43:22.00Z",
+      "datePublished": "2024-12-16T19:43:22.00Z",
+      "dateModified": "2024-12-16T19:43:22.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "Aryan's Journal",
@@ -85,7 +85,7 @@ It’s the ownership model. That keeps us safe and lets us sleep at night after 
           }
       },
       "image": "http://localhost:1313/assets/favicon.ico",
-      "url" : "http:\/\/localhost:1313\/posts\/rust-memory-ownership-and-borrowing\/",
+      "url" : "http:\/\/localhost:1313\/random-thoughts\/rust-memory-ownership-and-borrowing\/",
       "wordCount" : "2182",
       "genre" : [ ],
       "keywords" : [ ]
@@ -110,7 +110,7 @@ It’s the ownership model. That keeps us safe and lets us sleep at night after 
   
   
   <li class="">
-    <a href="/posts/"><span>posts</span></a>
+    <a href="/random-thoughts/"><span>random thoughts</span></a>
     
   </li>
 </ul>
@@ -135,10 +135,10 @@ It’s the ownership model. That keeps us safe and lets us sleep at night after 
 <p>When a function is called, that is when we actually put our sheet of paper on top of our stack. Lets take a look at the following code,</p>
 <div class="highlight"><pre tabindex="0" style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#00a8c8">fn</span> <span style="color:#75af00">main</span><span style="color:#111">()</span> <span style="color:#111">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#111">println!</span><span style="color:#111">(</span><span style="color:#d88200">&#34;Hello, World&#34;</span><span style="color:#111">);</span>
-</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
 </span></span><span style="display:flex;"><span>  <span style="color:#00a8c8">let</span> <span style="color:#111">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span><span style="color:#111">;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#111">println</span><span style="color:#111">(</span><span style="color:#d88200">&#34;{}&#34;</span><span style="color:#111">,</span> <span style="color:#111">x</span><span style="color:#111">);</span>
-</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
 </span></span><span style="display:flex;"><span>  <span style="color:#111">print_another_variable</span><span style="color:#111">();</span>
 </span></span><span style="display:flex;"><span><span style="color:#111">}</span>
 </span></span><span style="display:flex;"><span>
@@ -239,16 +239,16 @@ If we update the string to Hello, our capacity still remain 12, but our length w
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> <span style="color:#75715e">// added `mut` here
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> <span style="color:#00a8c8">let</span> <span style="color:#00a8c8">mut</span> <span style="color:#111">a</span> <span style="color:#f92672">=</span> <span style="color:#111">String</span>::<span style="color:#111">from</span><span style="color:#111">(</span><span style="color:#d88200">&#34;Hello&#34;</span><span style="color:#111">);</span>
-</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span> <span style="color:#111">a</span> <span style="color:#f92672">=</span> <span style="color:#111">print_something</span><span style="color:#111">(</span><span style="color:#111">a</span><span style="color:#111">);</span>
-</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
 </span></span><span style="display:flex;"><span> <span style="color:#111">println!</span><span style="color:#111">(</span><span style="color:#d88200">&#34;a in main =&gt; </span><span style="color:#d88200">{}</span><span style="color:#d88200">&#34;</span><span style="color:#111">,</span> <span style="color:#111">a</span><span style="color:#111">);</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#111">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// Notice the &#34; -&gt; String&#34;, it means it is gonna return a string
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#00a8c8">fn</span> <span style="color:#75af00">print_something</span><span style="color:#111">(</span><span style="color:#111">a</span> : <span style="color:#111">String</span><span style="color:#111">)</span> -&gt; <span style="color:#111">String</span> <span style="color:#111">{</span>
 </span></span><span style="display:flex;"><span> <span style="color:#111">println!</span><span style="color:#111">(</span><span style="color:#d88200">&#34;inside the function =&gt; </span><span style="color:#d88200">{}</span><span style="color:#d88200">&#34;</span><span style="color:#111">,</span> <span style="color:#111">a</span><span style="color:#111">);</span>
-</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
 </span></span><span style="display:flex;"><span> <span style="color:#111">a</span> <span style="color:#75715e">// here we are returning a string value
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#111">}</span>
 </span></span></code></pre></div><p>We needed to add mut because rust’s variables are by default immutable. But the key point here is in a = print_something(a), we are getting back a string from the print_something() function.</p>
@@ -259,7 +259,7 @@ If we update the string to Hello, our capacity still remain 12, but our length w
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e">// we are passing a reference, denoted by &#39;&amp;&#39;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> <span style="color:#111">print_something</span><span style="color:#111">(</span><span style="color:#f92672">&amp;</span><span style="color:#111">a</span><span style="color:#111">);</span>
-</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
 </span></span><span style="display:flex;"><span> <span style="color:#111">println!</span><span style="color:#111">(</span><span style="color:#d88200">&#34;a in main =&gt; </span><span style="color:#d88200">{}</span><span style="color:#d88200">&#34;</span><span style="color:#111">,</span> <span style="color:#111">a</span><span style="color:#111">);</span>
 </span></span><span style="display:flex;"><span><span style="color:#111">}</span>
 </span></span><span style="display:flex;"><span>
@@ -299,26 +299,11 @@ You can tell what a function do.</p>
 
       
       <div class="post-date">
-        <span class="g time">June 27, 2024 </span> &#8729;
+        <span class="g time">December 16, 2024 </span> &#8729;
          
       </div>
       
     </section>
-    
-    
-    <div id="comments">
-      
-<script src="https://utteranc.es/client.js"
-    repo=canhtran/maverick
-    issue-term="pathname"
-    theme=github-light
-    crossorigin="anonymous"
-    async>
-</script>
-
-
-    </div>
-    
     
   </div>
 </main>

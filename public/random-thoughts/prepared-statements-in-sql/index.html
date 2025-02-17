@@ -7,7 +7,7 @@
     <meta name="author" content="Liste - http://localhost:1313/">
     <title>Prepared Statements in Sql | Aryan&#39;s Journal</title>
     <meta name="description" content="Random bits and bytes from Aryan&#39;s Journey">
-    <meta property="og:url" content="http://localhost:1313/posts/prepared-statements-in-sql/">
+    <meta property="og:url" content="http://localhost:1313/random-thoughts/prepared-statements-in-sql/">
   <meta property="og:site_name" content="Aryan&#39;s Journal">
   <meta property="og:title" content="Prepared Statements in Sql">
   <meta property="og:description" content="Prepared statements are a common thing sql world. It has many benefits like it can execute the same (or similar) SQL statements repeatedly with high efficiency. It can also prevent one of the biggest security vulnerabilities, SQL injection.
@@ -15,20 +15,20 @@ Compared to executing the query directly, there are primarily 3 advantages. Taki
 Prepared statements reduce parsing time as the preparation on the query is done only once (although the statement is executed multiple times).">
   <meta property="og:locale" content="en_gb">
   <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-08-19T19:52:18+01:00">
-    <meta property="article:modified_time" content="2024-08-19T19:52:18+01:00">
+    <meta property="article:section" content="random-thoughts">
+    <meta property="article:published_time" content="2024-12-16T19:52:18+01:00">
+    <meta property="article:modified_time" content="2024-12-16T19:52:18+01:00">
 
     
   <meta itemprop="name" content="Prepared Statements in Sql">
   <meta itemprop="description" content="Prepared statements are a common thing sql world. It has many benefits like it can execute the same (or similar) SQL statements repeatedly with high efficiency. It can also prevent one of the biggest security vulnerabilities, SQL injection.
 Compared to executing the query directly, there are primarily 3 advantages. Taking these points from w3schools,
 Prepared statements reduce parsing time as the preparation on the query is done only once (although the statement is executed multiple times).">
-  <meta itemprop="datePublished" content="2024-08-19T19:52:18+01:00">
-  <meta itemprop="dateModified" content="2024-08-19T19:52:18+01:00">
+  <meta itemprop="datePublished" content="2024-12-16T19:52:18+01:00">
+  <meta itemprop="dateModified" content="2024-12-16T19:52:18+01:00">
   <meta itemprop="wordCount" content="794">
     
-    <link rel="canonical" href="http://localhost:1313/posts/prepared-statements-in-sql/">
+    <link rel="canonical" href="http://localhost:1313/random-thoughts/prepared-statements-in-sql/">
     <link rel="icon" href="http://localhost:1313//assets/favicon.ico">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
@@ -47,7 +47,7 @@ Prepared statements reduce parsing time as the preparation on the query is done 
   {
       "@context": "http://schema.org",
       "@type": "BlogPosting",
-      "articleSection": "posts",
+      "articleSection": "random-thoughts",
       "name": "Prepared Statements in Sql",
       "headline": "Prepared Statements in Sql",
       "alternativeHeadline": "",
@@ -56,7 +56,7 @@ Prepared statements reduce parsing time as the preparation on the query is done 
       "isFamilyFriendly": "true",
       "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "http:\/\/localhost:1313\/posts\/prepared-statements-in-sql\/"
+          "@id": "http:\/\/localhost:1313\/random-thoughts\/prepared-statements-in-sql\/"
       },
       "author" : {
           "@type": "Person",
@@ -72,9 +72,9 @@ Prepared statements reduce parsing time as the preparation on the query is done 
       },
       "copyrightHolder" : "Aryan\u0027s Journal",
       "copyrightYear" : "2024",
-      "dateCreated": "2024-08-19T19:52:18.00Z",
-      "datePublished": "2024-08-19T19:52:18.00Z",
-      "dateModified": "2024-08-19T19:52:18.00Z",
+      "dateCreated": "2024-12-16T19:52:18.00Z",
+      "datePublished": "2024-12-16T19:52:18.00Z",
+      "dateModified": "2024-12-16T19:52:18.00Z",
       "publisher":{
           "@type":"Organization",
           "name": "Aryan's Journal",
@@ -87,7 +87,7 @@ Prepared statements reduce parsing time as the preparation on the query is done 
           }
       },
       "image": "http://localhost:1313/assets/favicon.ico",
-      "url" : "http:\/\/localhost:1313\/posts\/prepared-statements-in-sql\/",
+      "url" : "http:\/\/localhost:1313\/random-thoughts\/prepared-statements-in-sql\/",
       "wordCount" : "794",
       "genre" : [ ],
       "keywords" : [ ]
@@ -112,7 +112,7 @@ Prepared statements reduce parsing time as the preparation on the query is done 
   
   
   <li class="">
-    <a href="/posts/"><span>posts</span></a>
+    <a href="/random-thoughts/"><span>random thoughts</span></a>
     
   </li>
 </ul>
@@ -168,7 +168,7 @@ Prepared statements reduce parsing time as the preparation on the query is done 
 <p>Lets take a look at the following code,</p>
 <pre><code>$data = &quot;1; DROP TABLE users;&quot;
 $db-&gt;prepare(&quot;SELECT (columns…) FROM users WHERE id=?&quot;);
-
+ 
 $db-&gt;execute($data);
 </code></pre>
 <p>Shouldn’t this also translate to the same query? Well, the answer is <strong>no</strong>. AS mentioned, the query is a command that is executed, the data is not. For our instance, the data <code>*1; DROP Table users*</code> would fail to find a valid result.</p>
@@ -190,26 +190,11 @@ $db-&gt;execute($data);
 
       
       <div class="post-date">
-        <span class="g time">August 19, 2024 </span> &#8729;
+        <span class="g time">December 16, 2024 </span> &#8729;
          
       </div>
       
     </section>
-    
-    
-    <div id="comments">
-      
-<script src="https://utteranc.es/client.js"
-    repo=canhtran/maverick
-    issue-term="pathname"
-    theme=github-light
-    crossorigin="anonymous"
-    async>
-</script>
-
-
-    </div>
-    
     
   </div>
 </main>

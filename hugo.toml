@@ -1,3 +1,5 @@
+# I don't know why saving and formating this toml breaks it
+# autosave is not a problme, cmd + s is. But meh.
 baseURL = 'https://thearyanahmed.com'
 languageCode = 'en-gb'
 title = "Aryan's Journal"
@@ -12,21 +14,16 @@ theme = 'maverick'
   author = 'Aryan Ahmed'
   items = 1000
 
-  [params.comments]
+  [params.comments]# Sample workflow for building and deploying a Hugo site to
     enabled = true
     githubRepo = 'canhtran/maverick'
     theme = 'github-light'
 
 
 [menu]
-#  [[menu.main]]
-#    identifier = "whoami"
-#    name = "Whoami"
-#    url = "/whoami/"
-#    weight = "-110"
   [[menu.main]]
     identifier = "posts"
-    name = "Post"
+    name = "posts"
     url = "/posts/"
     weight = -200
 

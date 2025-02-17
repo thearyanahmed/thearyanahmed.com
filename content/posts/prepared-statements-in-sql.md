@@ -1,6 +1,6 @@
 +++
 title = 'Prepared Statements in Sql'
-date = 2024-12-16T19:52:18+01:00
+date = 2024-08-19T19:52:18+01:00
 draft = false
 +++
 
@@ -57,7 +57,7 @@ Lets take a look at the following code,
 
     $data = "1; DROP TABLE users;"
     $db->prepare("SELECT (columns…) FROM users WHERE id=?");
-     
+
     $db->execute($data);
 
 Shouldn’t this also translate to the same query? Well, the answer is **no**. AS mentioned, the query is a command that is executed, the data is not. For our instance, the data `*1; DROP Table users*` would fail to find a valid result.
